@@ -1,0 +1,28 @@
+{
+  "nav": {
+    "index": "De index",
+    "blog": "Blog",
+    "sutras": "De Sutra's",
+    "rishikesh": "Rishikesh",
+    "forTeachers": "Voor docenten"
+  },
+  "cta": {
+    "book": "Boeken",
+    "enquire": "Contact opnemen",
+    "search": "Zoeken",
+    "viewProfile": "Bekijk profiel",
+    "clearFilters": "Filters wissen"
+  },
+  "listing": {
+    "advertisingOnlyNote": "Je boekt rechtstreeks bij deze aanbieder — de contactgegevens staan op deze pagina.",
+    "verified": "Kwalificaties geverifieerd",
+    "indicativePrice": "Indicatieve prijsklasse van de aanbieder, onder voorbehoud — bevestig rechtstreeks."
+  },
+  "footer": {
+    "tagline": "The Yoga Universe is een onafhankelijke index van docenten, studio's, retraites en ademwerk.",
+    "indexColumn": "Index",
+    "moreColumn": "Meer",
+    "privacy": "Privacy",
+    "terms": "Voorwaarden"
+  }
+}

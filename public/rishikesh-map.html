@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Rishikesh — where the offerings are</title>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha384-sHL9NAb7lN7rfvG5lfHpm643Xkcjzp4jFvuavGOndn6pjVqS6ny56CAt3nsEVT4H" crossorigin="anonymous">
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha384-cxOPjt7s7Iz04uaHJceBmS+qpjv2JkIHNVcuOrM+YHwZOmJGBXI00mdUXEq65HTH" crossorigin="anonymous"></script>
+<style>
+  html, body { margin: 0; padding: 0; height: 100%; background: #f0f6f0; }
+  #map { position: absolute; inset: 0; }
+  .leaflet-container { font-family: Roboto, system-ui, sans-serif; background: #f0f6f0; }
+  .leaflet-popup-content-wrapper { border-radius: 10px; }
+  .leaflet-popup-content { margin: 12px 14px; font-size: 13px; line-height: 1.5; color: #1b391c; }
+  .leaflet-popup-content b { font-weight: 500; }
+  .pin { background: #ff6540; width: 14px; height: 14px; border-radius: 50%; border: 3px solid #ffffff; box-shadow: 0 2px 6px rgba(0,0,0,0.3); }
+  .pin.green { background: #1b391c; }
+</style>
+</head>
+<body>
+<div id="map"></div>
+<script>
+  var map = L.map('map', { scrollWheelZoom: false }).setView([30.1180, 78.3170], 13);
+  L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '© OpenStreetMap contributors', maxZoom: 18
+  }).addTo(map);
+
+  var places = [
+    [30.1245, 78.3295, "Lakshman Jhula", "The upstream footbridge. Cafés, bookshops and a dozen small shalas on the east bank.", 0],
+    [30.1177, 78.3140, "Ram Jhula", "The main crossing to Swarg Ashram — most of the large ashrams sit within ten minutes of it.", 0],
+    [30.1147, 78.3175, "Parmarth Niketan", "The largest ashram in Rishikesh and host of the International Yoga Festival each March.", 0],
+    [30.1075, 78.3230, "Chaurasi Kutia", "The abandoned Maharishi Mahesh Yogi ashram where the Beatles stayed in 1968. Now a forest-department site.", 1],
+    [30.1046, 78.2960, "Triveni Ghat", "The town's main ghat. Ganga Aarti at dusk, every evening.", 1],
+    [30.1290, 78.3210, "Tapovan", "The teacher-training district: most 200hr and 300hr courses are based on this hillside.", 0],
+    [30.1490, 78.3960, "Neelkanth Mahadev", "A Shiva temple up in the hills, traditionally walked to rather than driven.", 1]
+  ];
+
+  var group = [];
+  places.forEach(function (p) {
+    var m = L.marker([p[0], p[1]], {
+      icon: L.divIcon({ className: '', html: '<div class="pin' + (p[4] ? ' green' : '') + '"></div>', iconSize: [20, 20], iconAnchor: [10, 10] })
+    }).addTo(map).bindPopup('<b>' + p[2] + '</b><br>' + p[3]);
+    group.push(m);
+  });
+
+  map.fitBounds(L.featureGroup(group).getBounds().pad(0.18));
+  map.on('click', function () { map.scrollWheelZoom.enable(); });
+</script>
+</body>
+</html>

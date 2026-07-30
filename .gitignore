@@ -1,0 +1,33 @@
+# dependencies
+node_modules/
+
+# next.js
+.next/
+out/
+next-env.d.ts
+
+# production
+build/
+
+# env
+.env
+.env*.local
+
+# vercel
+.vercel
+
+# typescript
+*.tsbuildinfo
+
+# testing
+coverage/
+
+# misc
+.DS_Store
+Untitled/
+.smoke/
+
+# drizzle
+drizzle/meta/_journal.json.bak
+.env*
+!.env.example

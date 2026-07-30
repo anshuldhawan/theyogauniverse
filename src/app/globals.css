@@ -1,0 +1,365 @@
+@import "tailwindcss";
+
+/*
+ * The Yoga Universe design tokens, taken verbatim from the prototype
+ * (docs/design/The Yoga Universe.dc.html) and brand guidelines.
+ */
+@theme {
+  /* Greens */
+  --color-forest: #1b391c;
+  --color-forest-800: #234724;
+  --color-forest-700: #2c5a2e;
+  --color-leaf: #157a3d;
+  --color-sage: #a2d1a2;
+  --color-sage-300: #bfdfbf;
+  --color-sage-600: #7fa07f;
+  --color-sage-pale: #d9e8d9;
+  --color-mint: #f0f6f0;
+  --color-mint-200: #e4ece4;
+  --color-mint-300: #d4e3d4;
+  --color-mint-wash: #f7faf7;
+  --color-verified: #eaf4ea;
+
+  /* Warms */
+  --color-orange: #ff6540;
+  --color-orange-600: #e5502d;
+  --color-kind-border: #ffd7cc;
+  --color-amber: #fbac49;
+  --color-amber-600: #e29334;
+  --color-blush: #f0d9cf;
+  --color-cta-body: #4a1f14;
+
+  /* Text */
+  --color-body: #3d523d;
+  --color-muted: #5c6f5c;
+  --color-faint: #8a9a8a;
+  --color-article: #2b3f2b;
+  --color-disabled: #e4ece4;
+
+  /* Eight-limbs diagram ramp, outward conduct to samadhi */
+  --color-ring-1: #f0f6f0;
+  --color-ring-2: #dcebdc;
+  --color-ring-3: #c6dfc6;
+  --color-ring-4: #a2d1a2;
+  --color-ring-5: #7cb87c;
+  --color-ring-6: #4a9a58;
+  --color-ring-7: #157a3d;
+  --color-ring-8: #ff6540;
+
+  /* Typography (loaded via next/font in the root layout) */
+  --font-heading: var(--font-petrona), Georgia, serif;
+  --font-sans: var(--font-roboto), system-ui, sans-serif;
+}
+
+/*
+ * Avatar tints. Six background/foreground pairs, assigned deterministically
+ * per listing in src/lib/avatar.ts.
+ */
+:root {
+  --tint-1-bg: #a2d1a2;
+  --tint-1-fg: #1b391c;
+  --tint-2-bg: #ff6540;
+  --tint-2-fg: #ffffff;
+  --tint-3-bg: #fbac49;
+  --tint-3-fg: #1b391c;
+  --tint-4-bg: #157a3d;
+  --tint-4-fg: #ffffff;
+  --tint-5-bg: #1b391c;
+  --tint-5-fg: #a2d1a2;
+  --tint-6-bg: #f0d9cf;
+  --tint-6-fg: #1b391c;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background: #ffffff;
+    color: var(--color-forest);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1,
+  h2,
+  h3 {
+    font-family: var(--font-heading);
+    color: var(--color-forest);
+  }
+
+  a {
+    color: var(--color-leaf);
+    text-decoration: none;
+  }
+
+  a:hover {
+    color: var(--color-orange);
+  }
+
+  ::selection {
+    background: var(--color-sage);
+  }
+}
+
+@layer components {
+  /* Page shells. The prototype uses one horizontal padding everywhere and
+     varies only the max width per view. It sets that padding on the outer
+     section, so the stated width is the *content* width — hence the calc(). */
+  .shell,
+  .shell-1100,
+  .shell-1000,
+  .shell-760,
+  .shell-720 {
+    --gutter: clamp(16px, 4vw, 40px);
+    margin-inline: auto;
+    padding-inline: var(--gutter);
+    max-width: calc(var(--shell) + 2 * var(--gutter));
+  }
+  .shell {
+    --shell: 1240px;
+  }
+  .shell-1100 {
+    --shell: 1100px;
+  }
+  .shell-1000 {
+    --shell: 1000px;
+  }
+  .shell-760 {
+    --shell: 760px;
+  }
+  .shell-720 {
+    --shell: 720px;
+  }
+  /* A few views put the gutter inside the stated width instead. */
+  .shell-inset {
+    max-width: var(--shell);
+  }
+
+  /* Vertical rhythm */
+  .section-y {
+    padding-block: clamp(40px, 6vw, 84px);
+  }
+  .section-y-top {
+    padding-top: clamp(40px, 6vw, 84px);
+  }
+  .page-y {
+    padding-block: clamp(28px, 4vw, 52px) clamp(48px, 7vw, 90px);
+  }
+  .hero-y {
+    padding-block: clamp(48px, 8vw, 104px) clamp(40px, 6vw, 72px);
+  }
+  .hero-y-sm {
+    padding-block: clamp(36px, 5vw, 72px);
+  }
+
+  /* Uppercase micro-headings */
+  .eyebrow {
+    font-size: 11px;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--color-leaf);
+  }
+  .eyebrow-hero {
+    font-size: 12px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--color-sage);
+  }
+  .label {
+    font-size: 10.5px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--color-leaf);
+  }
+  .label-sm {
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--color-leaf);
+  }
+
+  /* Display type. Petrona 300, negative tracking, fluid across the range. */
+  .display-hero,
+  .display-1,
+  .display-2,
+  .display-3,
+  .display-4 {
+    font-family: var(--font-heading);
+    font-weight: 300;
+    color: var(--color-forest);
+  }
+  .display-hero {
+    font-size: clamp(36px, 6.4vw, 74px);
+    line-height: 1.06;
+    letter-spacing: -0.02em;
+  }
+  .display-1 {
+    font-size: clamp(30px, 4.4vw, 52px);
+    line-height: 1.08;
+    letter-spacing: -0.02em;
+  }
+  .display-2 {
+    font-size: clamp(28px, 3.8vw, 44px);
+    line-height: 1.1;
+    letter-spacing: -0.015em;
+  }
+  .display-3 {
+    font-size: clamp(26px, 3.4vw, 38px);
+    line-height: 1.12;
+    letter-spacing: -0.015em;
+  }
+  .display-4 {
+    font-size: clamp(24px, 3vw, 34px);
+    line-height: 1.15;
+    letter-spacing: -0.015em;
+  }
+  /* Card and panel headings are Petrona 400, not 300. */
+  .heading-card {
+    font-family: var(--font-heading);
+    font-weight: 400;
+    color: var(--color-forest);
+  }
+
+  /* Links */
+  .link-text {
+    font-size: 12px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--color-leaf);
+    border-bottom: 1px solid var(--color-sage);
+    padding-bottom: 4px;
+  }
+  .link-text:hover {
+    color: var(--color-orange);
+  }
+  .link-back {
+    font-size: 11.5px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--color-leaf);
+  }
+  .link-back:hover {
+    color: var(--color-orange);
+  }
+  .link-back-dark {
+    font-size: 11.5px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--color-sage);
+  }
+  .link-back-dark:hover {
+    color: var(--color-amber);
+  }
+
+  /*
+   * Sticky sidebars sit clear of the header. Below the width where the two
+   * columns still fit side by side the sidebar becomes a full-width block above
+   * the results, and sticking it there would float it over them — so the
+   * position only applies once there are genuinely two columns.
+   */
+  @media (min-width: 820px) {
+    .sticky-side {
+      position: sticky;
+      top: 92px;
+    }
+  }
+
+  /* Hairline-separated row stack, used for schedules and the four books. */
+  .stack-table {
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+    background: var(--color-mint-200);
+    border: 1px solid var(--color-mint-200);
+    border-radius: 14px;
+    overflow: hidden;
+  }
+  .stack-row {
+    background: #ffffff;
+    padding: 16px 18px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px 18px;
+    align-items: baseline;
+  }
+
+  /* Long-form reference copy (help, legal, policy) authored as plain JSX. */
+  .prose-editorial {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    font-size: 16.5px;
+    line-height: 1.75;
+    color: var(--color-article);
+  }
+  .prose-editorial section {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+  .prose-editorial h2 {
+    font-family: var(--font-heading);
+    font-weight: 300;
+    font-size: clamp(24px, 3vw, 32px);
+    line-height: 1.15;
+    letter-spacing: -0.015em;
+    margin-top: 12px;
+  }
+  .prose-editorial h3 {
+    font-family: var(--font-heading);
+    font-weight: 400;
+    font-size: 20px;
+  }
+  .prose-editorial strong {
+    color: var(--color-forest);
+    font-weight: 500;
+  }
+  .prose-editorial a {
+    text-decoration: underline;
+  }
+  .prose-editorial ul,
+  .prose-editorial ol {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding-left: 22px;
+  }
+  .prose-editorial ul {
+    list-style: disc;
+  }
+  .prose-editorial ol {
+    list-style: decimal;
+  }
+
+  /* auto-fit/auto-fill grids at the prototype's exact thresholds */
+  .grid-fit-220 {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  }
+  .grid-fit-240 {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  }
+  .grid-fit-250 {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  }
+  .grid-fit-280 {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  }
+  .grid-fill-272 {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(272px, 1fr));
+  }
+  .grid-fill-300 {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  }
+  .grid-fit-150 {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  }
+}

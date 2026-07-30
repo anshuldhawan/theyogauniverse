@@ -1,0 +1,1485 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="" />
+<link href="https://fonts.googleapis.com/css2?family=Petrona:ital,wght@0,300;0,400;0,500;1,300&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet" />
+<script src="./image-slot.js"></script>
+<style>
+  html, body { margin: 0; padding: 0; background: #ffffff; }
+  body { font-family: Roboto, system-ui, sans-serif; color: #1b391c; -webkit-font-smoothing: antialiased; }
+  * { box-sizing: border-box; }
+  a { color: #157a3d; text-decoration: none; }
+  a:hover { color: #ff6540; }
+  input, select, button { font-family: inherit; }
+  ::selection { background: #a2d1a2; }
+</style>
+</helmet>
+
+<div style="min-height: 100vh; background: #ffffff">
+
+  <header style="position: sticky; top: 0; z-index: 50; background: #1b391c; color: #ffffff">
+    <div style="max-width: 1240px; margin: 0 auto; padding: 14px clamp(16px, 4vw, 40px); display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap">
+      <div onClick="{{ goHome }}" style="display: flex; align-items: center; gap: 10px; cursor: pointer; flex-shrink: 0">
+        <img src="assets/mark-orange.png" alt="The Yoga Universe" style="width: 34px; height: 34px; border-radius: 50%; display: block" />
+        <div style="display: flex; flex-direction: column; line-height: 1; flex-shrink: 0">
+          <span style="font-family: Petrona, serif; font-weight: 300; font-size: 21px; letter-spacing: -0.01em; color: #ffffff; white-space: nowrap">The Yoga Universe</span>
+          <span style="font-family: Roboto, sans-serif; font-size: 8.5px; letter-spacing: 0.28em; color: #a2d1a2; margin-top: 4px; white-space: nowrap">YOGA · MEDITATION · BREATHWORK</span>
+        </div>
+      </div>
+      <nav style="display: flex; align-items: center; gap: clamp(14px, 2.2vw, 28px); flex-wrap: wrap">
+        <span onClick="{{ goDirectory }}" style="font-size: 12px; letter-spacing: 0.14em; color: #ffffff; cursor: pointer; padding: 6px 0" style-hover="color: #fbac49">THE INDEX</span>
+        <span onClick="{{ goBlog }}" style="font-size: 12px; letter-spacing: 0.14em; color: #ffffff; cursor: pointer; padding: 6px 0" style-hover="color: #fbac49">BLOG</span>
+        <span onClick="{{ goSutras }}" style="font-size: 12px; letter-spacing: 0.14em; color: #ffffff; cursor: pointer; padding: 6px 0" style-hover="color: #fbac49">THE SUTRAS</span>
+        <span onClick="{{ goRishikesh }}" style="font-size: 12px; letter-spacing: 0.14em; color: #ffffff; cursor: pointer; padding: 6px 0" style-hover="color: #fbac49">RISHIKESH</span>
+        <span onClick="{{ goManage }}" style="font-size: 12px; letter-spacing: 0.14em; color: #1b391c; background: #ff6540; padding: 12px 18px; border-radius: 999px; cursor: pointer; font-weight: 500; white-space: nowrap" style-hover="background: #fbac49">FOR TEACHERS</span>
+      </nav>
+    </div>
+  </header>
+
+  <sc-if value="{{ isHome }}" hint-placeholder-val="{{ true }}">
+  <div>
+    <section style="background: #1b391c; color: #ffffff; padding: clamp(48px, 8vw, 104px) clamp(16px, 4vw, 40px) clamp(40px, 6vw, 72px); position: relative; overflow: hidden">
+      <img src="assets/mark-green.png" alt="" style="position: absolute; right: -8%; top: -10%; width: min(560px, 60vw); opacity: 0.13; pointer-events: none" />
+      <div style="max-width: 1240px; margin: 0 auto; position: relative">
+        <p style="font-size: 12px; letter-spacing: 0.3em; color: #a2d1a2; margin: 0 0 20px">THE YOGA UNIVERSE</p>
+        <h1 style="font-family: Petrona, serif; font-weight: 300; font-size: clamp(36px, 6.4vw, 74px); line-height: 1.06; letter-spacing: -0.02em; margin: 0; max-width: 17ch; text-wrap: pretty">Every yoga and meditation offering, in one index.</h1>
+        <p style="font-size: clamp(16px, 1.5vw, 19px); line-height: 1.7; color: #d9e8d9; max-width: 58ch; margin: 24px 0 0">Teachers, studios, retreats, teacher trainings, breathwork and meditation. Everyone lists their philosophy, when and where they teach — in person or online — and what their students actually say.</p>
+
+        <div style="margin-top: clamp(28px, 4vw, 44px); background: #ffffff; border-radius: 18px; padding: 12px; display: flex; flex-wrap: wrap; gap: 8px; align-items: stretch; box-shadow: 0 24px 60px rgba(0,0,0,0.22)">
+          <div style="flex: 3 1 200px; display: flex; flex-direction: column; justify-content: center; padding: 10px 16px">
+            <label style="font-size: 10px; letter-spacing: 0.2em; color: #157a3d">NAME, STYLE OR KEYWORD</label>
+            <input value="{{ query }}" onChange="{{ setQuery }}" placeholder="Ashtanga, prenatal, breathwork…" style="border: 0; outline: none; font-size: 16px; color: #1b391c; padding: 6px 0 0; width: 100%; background: transparent" />
+          </div>
+          <div style="width: 1px; background: #e4ece4; flex: 0 0 auto"></div>
+          <div style="flex: 2 1 150px; display: flex; flex-direction: column; justify-content: center; padding: 10px 16px">
+            <label style="font-size: 10px; letter-spacing: 0.2em; color: #157a3d">LOOKING FOR</label>
+            <select value="{{ kind }}" onChange="{{ setKind }}" style="border: 0; outline: none; font-size: 16px; color: #1b391c; padding: 6px 0 0; width: 100%; background: transparent; appearance: none; cursor: pointer">
+              <sc-for list="{{ kindOptions }}" as="k" hint-placeholder-count="5">
+                <option value="{{ k }}">{{ k }}</option>
+              </sc-for>
+            </select>
+          </div>
+          <div style="width: 1px; background: #e4ece4; flex: 0 0 auto"></div>
+          <div style="flex: 2 1 150px; display: flex; flex-direction: column; justify-content: center; padding: 10px 16px">
+            <label style="font-size: 10px; letter-spacing: 0.2em; color: #157a3d">WHERE</label>
+            <select value="{{ city }}" onChange="{{ setCity }}" style="border: 0; outline: none; font-size: 16px; color: #1b391c; padding: 6px 0 0; width: 100%; background: transparent; appearance: none; cursor: pointer">
+              <sc-for list="{{ cityOptions }}" as="c" hint-placeholder-count="4">
+                <option value="{{ c }}">{{ c }}</option>
+              </sc-for>
+            </select>
+          </div>
+          <div onClick="{{ goDirectory }}" style="flex: 1 1 140px; background: #ff6540; color: #ffffff; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 12px; letter-spacing: 0.18em; font-weight: 500; cursor: pointer; padding: 18px 20px" style-hover="background: #1b391c">SEARCH</div>
+        </div>
+
+        <div style="display: flex; flex-wrap: wrap; gap: 10px; margin-top: 22px; align-items: center">
+          <span style="font-size: 12px; letter-spacing: 0.16em; color: #a2d1a2; margin-right: 4px">POPULAR</span>
+          <sc-for list="{{ popularStyles }}" as="s" hint-placeholder-count="6">
+            <span onClick="{{ s.go }}" style="font-size: 13px; color: #ffffff; border: 1px solid rgba(162,209,162,0.45); padding: 8px 15px; border-radius: 999px; cursor: pointer" style-hover="border-color: #fbac49; color: #fbac49">{{ s.name }}</span>
+          </sc-for>
+        </div>
+      </div>
+    </section>
+
+    <section style="background: #ffffff; padding: clamp(40px, 6vw, 84px) clamp(16px, 4vw, 40px) 0">
+      <div style="max-width: 1240px; margin: 0 auto; border: 1px solid #e4ece4; border-radius: 20px; padding: clamp(24px, 3.4vw, 40px)">
+        <p style="font-size: 11px; letter-spacing: 0.28em; color: #157a3d; margin: 0 0 12px">START HERE</p>
+        <h2 style="font-family: Petrona, serif; font-weight: 300; font-size: clamp(24px, 3.2vw, 38px); line-height: 1.12; margin: 0 0 8px; letter-spacing: -0.015em">Not sure what you are looking for?</h2>
+        <p style="font-size: 16px; line-height: 1.7; color: #5c6f5c; margin: 0 0 24px; max-width: 56ch">Pick the closest thing to your situation and we will name three specific people, not a filter page.</p>
+        <div style="display: flex; flex-wrap: wrap; gap: 9px">
+          <sc-for list="{{ startPaths }}" as="p" hint-placeholder-count="6">
+            <span onClick="{{ p.select }}" style="font-size: 14px; padding: 12px 18px; border-radius: 999px; cursor: pointer; border: 1px solid {{ p.bd }}; background: {{ p.bg }}; color: {{ p.fg }}">{{ p.name }}</span>
+          </sc-for>
+        </div>
+        <div style="display: {{ startResultsDisplay }}; margin-top: 28px; border-top: 1px solid #f0f6f0; padding-top: 26px">
+          <p style="font-size: 15px; line-height: 1.7; color: #3d523d; margin: 0 0 20px; max-width: 60ch">{{ startNote }}</p>
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px">
+            <div onClick="{{ startPost.open }}" style="border: 1px solid #e4ece4; border-radius: 14px; padding: 20px; cursor: pointer; display: flex; flex-direction: column; gap: 10px; background: #f0f6f0; transition: border-color .18s" style-hover="border-color: #a2d1a2">
+              <span style="font-size: 10px; letter-spacing: 0.18em; color: #157a3d">READ FIRST · {{ startPost.category }}</span>
+              <h3 style="font-family: Petrona, serif; font-weight: 400; font-size: 20px; margin: 0; line-height: 1.25; text-wrap: pretty">{{ startPost.title }}</h3>
+              <p style="font-size: 14px; line-height: 1.6; color: #3d523d; margin: 0; text-wrap: pretty">{{ startPost.excerpt }}</p>
+              <span style="font-size: 12px; color: #8a9a8a; margin-top: auto">{{ startPost.meta }}</span>
+            </div>
+            <sc-for list="{{ startResults }}" as="t" hint-placeholder-count="2">
+              <div onClick="{{ t.open }}" style="border: 1px solid #e4ece4; border-radius: 14px; padding: 20px; cursor: pointer; display: flex; flex-direction: column; gap: 10px; transition: border-color .18s" style-hover="border-color: #a2d1a2">
+                <span style="font-size: 10px; letter-spacing: 0.18em; color: #ff6540">{{ t.kindLabel }}</span>
+                <h3 style="font-family: Petrona, serif; font-weight: 400; font-size: 20px; margin: 0; line-height: 1.2">{{ t.name }}</h3>
+                <p style="font-size: 13px; color: #5c6f5c; margin: 0">{{ t.placeLine }}</p>
+                <p style="font-size: 14px; line-height: 1.6; color: #3d523d; margin: 0; text-wrap: pretty">{{ t.tagline }}</p>
+              </div>
+            </sc-for>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section style="background: #ffffff; padding: clamp(40px, 6vw, 84px) clamp(16px, 4vw, 40px) 0">
+      <div style="max-width: 1240px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px">
+        <sc-for list="{{ categories }}" as="c" hint-placeholder-count="4">
+          <div onClick="{{ c.go }}" style="border: 1px solid #e4ece4; border-radius: 16px; padding: 24px; cursor: pointer; display: flex; flex-direction: column; gap: 8px; transition: border-color .18s, transform .18s" style-hover="border-color: #a2d1a2; transform: translateY(-3px)">
+            <h3 style="font-family: Petrona, serif; font-weight: 400; font-size: 22px; margin: 0">{{ c.title }}</h3>
+            <p style="font-size: 14px; line-height: 1.6; color: #5c6f5c; margin: 0">{{ c.blurb }}</p>
+            <span style="font-size: 11.5px; letter-spacing: 0.16em; color: #ff6540; margin-top: 6px">{{ c.count }}</span>
+          </div>
+        </sc-for>
+      </div>
+    </section>
+
+    <section style="background: #ffffff; padding: clamp(40px, 6vw, 84px) clamp(16px, 4vw, 40px)">
+      <div style="max-width: 1240px; margin: 0 auto">
+        <div style="display: flex; flex-wrap: wrap; gap: 16px; align-items: flex-end; justify-content: space-between; margin-bottom: 34px">
+          <div>
+            <p style="font-size: 11px; letter-spacing: 0.28em; color: #157a3d; margin: 0 0 12px">HAND PICKED</p>
+            <h2 style="font-family: Petrona, serif; font-weight: 300; font-size: clamp(28px, 3.8vw, 44px); line-height: 1.1; margin: 0; letter-spacing: -0.015em">Featured teachers</h2>
+          </div>
+          <span onClick="{{ goDirectory }}" style="font-size: 12px; letter-spacing: 0.16em; color: #157a3d; cursor: pointer; border-bottom: 1px solid #a2d1a2; padding-bottom: 4px" style-hover="color: #ff6540">SEE ALL {{ listingCount }} LISTINGS</span>
+        </div>
+        <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(272px, 1fr)); gap: 20px">
+          <sc-for list="{{ featured }}" as="t" hint-placeholder-count="4">
+            <div onClick="{{ t.open }}" style="border: 1px solid #e4ece4; border-radius: 16px; padding: 22px; cursor: pointer; background: #ffffff; display: flex; flex-direction: column; gap: 14px; transition: border-color .18s, transform .18s" style-hover="border-color: #a2d1a2; transform: translateY(-3px)">
+              <div style="display: flex; align-items: center; gap: 14px">
+                <div style="width: 54px; height: 54px; border-radius: 50%; background: {{ t.tint }}; color: {{ t.tintFg }}; display: flex; align-items: center; justify-content: center; font-family: Petrona, serif; font-size: 20px; flex-shrink: 0">{{ t.initials }}</div>
+                <div style="min-width: 0">
+                  <h3 style="font-family: Petrona, serif; font-weight: 400; font-size: 21px; margin: 0; line-height: 1.2">{{ t.name }}</h3>
+                  <p style="font-size: 13px; color: #5c6f5c; margin: 5px 0 0">{{ t.location }}</p>
+                </div>
+              </div>
+              <p style="font-size: 14.5px; line-height: 1.6; color: #3d523d; margin: 0; text-wrap: pretty">{{ t.tagline }}</p>
+              <div style="display: flex; flex-wrap: wrap; gap: 6px">
+                <sc-for list="{{ t.styles }}" as="st" hint-placeholder-count="3">
+                  <span style="font-size: 11px; letter-spacing: 0.08em; color: #157a3d; background: #f0f6f0; padding: 5px 10px; border-radius: 6px">{{ st }}</span>
+                </sc-for>
+              </div>
+              <div style="display: flex; align-items: center; justify-content: space-between; gap: 12px; border-top: 1px solid #f0f6f0; padding-top: 14px; margin-top: auto">
+                <span style="font-size: 13px; color: #5c6f5c">{{ t.reviewLabel }}</span>
+                <span style="font-size: 12.5px; color: #8a9a8a">{{ t.formatLabel }}</span>
+              </div>
+            </div>
+          </sc-for>
+        </div>
+      </div>
+    </section>
+
+    <section style="background: #f0f6f0; padding: clamp(40px, 6vw, 84px) clamp(16px, 4vw, 40px)">
+      <div style="max-width: 1240px; margin: 0 auto">
+        <div style="display: flex; flex-wrap: wrap; gap: 16px; align-items: flex-end; justify-content: space-between; margin-bottom: 34px">
+          <h2 style="font-family: Petrona, serif; font-weight: 300; font-size: clamp(26px, 3.4vw, 40px); margin: 0; letter-spacing: -0.015em">From the blog</h2>
+          <span onClick="{{ goBlog }}" style="font-size: 12px; letter-spacing: 0.16em; color: #157a3d; cursor: pointer; border-bottom: 1px solid #a2d1a2; padding-bottom: 4px" style-hover="color: #ff6540">ALL WRITING</span>
+        </div>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px">
+          <sc-for list="{{ homePosts }}" as="p" hint-placeholder-count="3">
+            <div onClick="{{ p.open }}" style="cursor: pointer; display: flex; flex-direction: column; gap: 12px">
+              <div style="height: 168px; border-radius: 14px; background: {{ p.tint }}; display: flex; align-items: flex-end; padding: 16px">
+                <span style="font-size: 10.5px; letter-spacing: 0.2em; color: #1b391c; background: #ffffff; padding: 6px 11px; border-radius: 999px">{{ p.category }}</span>
+              </div>
+              <h3 style="font-family: Petrona, serif; font-weight: 400; font-size: 22px; line-height: 1.25; margin: 4px 0 0; text-wrap: pretty">{{ p.title }}</h3>
+              <p style="font-size: 14.5px; line-height: 1.65; color: #5c6f5c; margin: 0">{{ p.excerpt }}</p>
+              <span style="font-size: 12px; color: #8a9a8a">{{ p.meta }}</span>
+            </div>
+          </sc-for>
+        </div>
+      </div>
+    </section>
+
+    <section style="background: #ff6540; padding: clamp(40px, 6vw, 76px) clamp(16px, 4vw, 40px)">
+      <div style="max-width: 1240px; margin: 0 auto; display: flex; flex-wrap: wrap; gap: 28px; align-items: center; justify-content: space-between">
+        <div style="flex: 1 1 340px">
+          <h2 style="font-family: Petrona, serif; font-weight: 300; font-size: clamp(26px, 3.4vw, 42px); margin: 0; color: #1b391c; letter-spacing: -0.015em; text-wrap: pretty">Teach, host or run a space? Put yourself on the map.</h2>
+          <p style="font-size: 16px; line-height: 1.7; color: #4a1f14; margin: 14px 0 0; max-width: 52ch">Listing is free for teachers, studios, retreats and breathwork facilitators. Add your styles, your timetable and your philosophy.</p>
+        </div>
+        <span onClick="{{ goManage }}" style="background: #1b391c; color: #ffffff; padding: 18px 32px; border-radius: 999px; font-size: 12px; letter-spacing: 0.18em; cursor: pointer; white-space: nowrap" style-hover="background: #ffffff; color: #1b391c">ADD YOUR LISTING</span>
+      </div>
+    </section>
+  </div>
+  </sc-if>
+
+  <sc-if value="{{ isDirectory }}" hint-placeholder-val="{{ false }}">
+  <div style="background: #ffffff; padding: clamp(28px, 4vw, 52px) clamp(16px, 4vw, 40px) clamp(48px, 7vw, 90px)">
+    <div style="max-width: 1240px; margin: 0 auto">
+      <p style="font-size: 11px; letter-spacing: 0.28em; color: #157a3d; margin: 0 0 12px">THE INDEX</p>
+      <h1 style="font-family: Petrona, serif; font-weight: 300; font-size: clamp(30px, 4.4vw, 52px); margin: 0 0 24px; letter-spacing: -0.02em">Teachers, studios, retreats, trainings, breathwork &amp; meditation</h1>
+
+      <div style="display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 30px">
+        <sc-for list="{{ kindTabs }}" as="k" hint-placeholder-count="5">
+          <span onClick="{{ k.go }}" style="font-size: 13px; letter-spacing: 0.06em; padding: 11px 18px; border-radius: 999px; cursor: pointer; border: 1px solid {{ k.bd }}; background: {{ k.bg }}; color: {{ k.fg }}">{{ k.name }}</span>
+        </sc-for>
+      </div>
+
+      <div style="display: flex; flex-wrap: wrap; gap: clamp(20px, 3vw, 40px); align-items: flex-start">
+
+        <aside style="flex: 1 1 250px; min-width: 240px; position: sticky; top: 92px; display: flex; flex-direction: column; gap: 26px; border: 1px solid #e4ece4; border-radius: 16px; padding: 22px">
+          <input value="{{ query }}" onChange="{{ setQuery }}" placeholder="Search the index…" style="width: 100%; border: 1px solid #e4ece4; border-radius: 10px; padding: 12px 14px; font-size: 15px; color: #1b391c; outline: none" style-focus="border-color: #a2d1a2" />
+          <div>
+            <span onClick="{{ toggleVerified }}" style="display: inline-block; font-size: 12.5px; padding: 9px 14px; border-radius: 999px; cursor: pointer; border: 1px solid {{ verifiedChip.bd }}; background: {{ verifiedChip.bg }}; color: {{ verifiedChip.fg }}">✓ Verified only</span>
+            <p style="font-size: 12px; line-height: 1.6; color: #8a9a8a; margin: 10px 0 0">We have seen certification documents or accreditation for verified listings.</p>
+          </div>
+          <div>
+            <p style="font-size: 10.5px; letter-spacing: 0.2em; color: #157a3d; margin: 0 0 12px">STYLE &amp; FOCUS</p>
+            <div style="display: flex; flex-wrap: wrap; gap: 7px">
+              <sc-for list="{{ styleFilters }}" as="f" hint-placeholder-count="10">
+                <span onClick="{{ f.toggle }}" style="font-size: 12.5px; padding: 7px 12px; border-radius: 999px; cursor: pointer; border: 1px solid {{ f.bd }}; background: {{ f.bg }}; color: {{ f.fg }}">{{ f.name }}</span>
+              </sc-for>
+            </div>
+          </div>
+          <div>
+            <p style="font-size: 10.5px; letter-spacing: 0.2em; color: #157a3d; margin: 0 0 12px">FORMAT</p>
+            <div style="display: flex; flex-wrap: wrap; gap: 7px">
+              <sc-for list="{{ formatFilters }}" as="f" hint-placeholder-count="2">
+                <span onClick="{{ f.toggle }}" style="font-size: 12.5px; padding: 7px 12px; border-radius: 999px; cursor: pointer; border: 1px solid {{ f.bd }}; background: {{ f.bg }}; color: {{ f.fg }}">{{ f.name }}</span>
+              </sc-for>
+            </div>
+          </div>
+          <div>
+            <p style="font-size: 10.5px; letter-spacing: 0.2em; color: #157a3d; margin: 0 0 12px">LEVEL</p>
+            <div style="display: flex; flex-wrap: wrap; gap: 7px">
+              <sc-for list="{{ levelFilters }}" as="f" hint-placeholder-count="3">
+                <span onClick="{{ f.toggle }}" style="font-size: 12.5px; padding: 7px 12px; border-radius: 999px; cursor: pointer; border: 1px solid {{ f.bd }}; background: {{ f.bg }}; color: {{ f.fg }}">{{ f.name }}</span>
+              </sc-for>
+            </div>
+          </div>
+          <div>
+            <p style="font-size: 10.5px; letter-spacing: 0.2em; color: #157a3d; margin: 0 0 12px">RUNS ON</p>
+            <div style="display: flex; flex-wrap: wrap; gap: 7px">
+              <sc-for list="{{ dayFilters }}" as="f" hint-placeholder-count="7">
+                <span onClick="{{ f.toggle }}" style="font-size: 12.5px; padding: 7px 11px; border-radius: 999px; cursor: pointer; border: 1px solid {{ f.bd }}; background: {{ f.bg }}; color: {{ f.fg }}">{{ f.name }}</span>
+              </sc-for>
+            </div>
+          </div>
+          <div>
+            <p style="font-size: 10.5px; letter-spacing: 0.2em; color: #157a3d; margin: 0 0 12px">LOCATION</p>
+            <select value="{{ city }}" onChange="{{ setCity }}" style="width: 100%; border: 1px solid #e4ece4; border-radius: 10px; padding: 12px 14px; font-size: 15px; color: #1b391c; outline: none; background: #ffffff; cursor: pointer">
+              <sc-for list="{{ cityOptions }}" as="c" hint-placeholder-count="6">
+                <option value="{{ c }}">{{ c }}</option>
+              </sc-for>
+            </select>
+          </div>
+          <span onClick="{{ clearFilters }}" style="font-size: 11.5px; letter-spacing: 0.16em; color: #8a9a8a; cursor: pointer" style-hover="color: #ff6540">CLEAR ALL FILTERS</span>
+        </aside>
+
+        <main style="flex: 3 1 460px; min-width: 0">
+          <div style="display: flex; flex-wrap: wrap; gap: 12px; align-items: center; justify-content: space-between; margin-bottom: 18px">
+            <p style="font-size: 14px; color: #5c6f5c; margin: 0">{{ resultLabel }}</p>
+            <select value="{{ sort }}" onChange="{{ setSort }}" style="border: 1px solid #e4ece4; border-radius: 10px; padding: 9px 12px; font-size: 13.5px; color: #1b391c; outline: none; background: #ffffff; cursor: pointer">
+              <option value="reviews">Most reviewed</option>
+              <option value="experience">Longest established</option>
+              <option value="name">Name A–Z</option>
+            </select>
+          </div>
+
+          <div style="display: flex; flex-direction: column; gap: 14px">
+            <sc-for list="{{ results }}" as="t" hint-placeholder-count="5">
+              <div onClick="{{ t.open }}" style="border: 1px solid #e4ece4; border-radius: 16px; padding: clamp(16px, 2.2vw, 24px); cursor: pointer; display: flex; flex-wrap: wrap; gap: 20px; background: #ffffff; transition: border-color .18s" style-hover="border-color: #a2d1a2">
+                <div style="width: 68px; height: 68px; border-radius: 50%; background: {{ t.tint }}; color: {{ t.tintFg }}; display: flex; align-items: center; justify-content: center; font-family: Petrona, serif; font-size: 24px; flex-shrink: 0">{{ t.initials }}</div>
+                <div style="flex: 1 1 260px; min-width: 0; display: flex; flex-direction: column; gap: 10px">
+                  <div style="display: flex; flex-wrap: wrap; gap: 8px 12px; align-items: center">
+                    <span style="font-size: 10px; letter-spacing: 0.18em; color: #ff6540; border: 1px solid #ffd7cc; padding: 4px 9px; border-radius: 5px">{{ t.kindLabel }}</span>
+                    <span style="display: {{ t.verifiedDisplay }}; font-size: 10px; letter-spacing: 0.16em; color: #157a3d; background: #eaf4ea; padding: 5px 9px; border-radius: 5px">✓ VERIFIED</span>
+                    <h3 style="font-family: Petrona, serif; font-weight: 400; font-size: 24px; margin: 0; line-height: 1.15">{{ t.name }}</h3>
+                  </div>
+                  <span style="font-size: 13px; color: #5c6f5c">{{ t.placeLine }}</span>
+                  <p style="font-size: 15px; line-height: 1.65; color: #3d523d; margin: 0; text-wrap: pretty">{{ t.tagline }}</p>
+                  <div style="display: flex; flex-wrap: wrap; gap: 6px">
+                    <sc-for list="{{ t.styles }}" as="st" hint-placeholder-count="3">
+                      <span style="font-size: 11px; letter-spacing: 0.08em; color: #157a3d; background: #f0f6f0; padding: 5px 10px; border-radius: 6px">{{ st }}</span>
+                    </sc-for>
+                  </div>
+                  <p style="font-size: 13px; color: #8a9a8a; margin: 0">{{ t.scheduleSummary }}</p>
+                </div>
+                <div style="flex: 0 1 120px; display: flex; flex-direction: column; gap: 6px; align-items: flex-start; justify-content: center">
+                  <span style="font-size: 15px; color: #1b391c; font-weight: 500">{{ t.reviewCount }}</span>
+                  <span style="font-size: 12.5px; color: #8a9a8a">reviews</span>
+                </div>
+              </div>
+            </sc-for>
+          </div>
+
+          <sc-if value="{{ noResults }}" hint-placeholder-val="{{ false }}">
+            <div style="border: 1px dashed #a2d1a2; border-radius: 16px; padding: 48px 24px; text-align: center">
+              <p style="font-family: Petrona, serif; font-size: 24px; margin: 0 0 10px">Nothing matches that yet</p>
+              <p style="font-size: 15px; color: #5c6f5c; margin: 0 0 20px">Try loosening a filter — the index is growing every week.</p>
+              <span onClick="{{ clearFilters }}" style="font-size: 12px; letter-spacing: 0.16em; background: #1b391c; color: #ffffff; padding: 14px 24px; border-radius: 999px; cursor: pointer; display: inline-block">CLEAR FILTERS</span>
+            </div>
+          </sc-if>
+        </main>
+      </div>
+    </div>
+  </div>
+  </sc-if>
+
+  <sc-if value="{{ isProfile }}" hint-placeholder-val="{{ false }}">
+  <div>
+    <section style="background: #1b391c; color: #ffffff; padding: clamp(28px, 4vw, 48px) clamp(16px, 4vw, 40px) clamp(36px, 5vw, 64px)">
+      <div style="max-width: 1240px; margin: 0 auto">
+        <span onClick="{{ goDirectory }}" style="font-size: 11.5px; letter-spacing: 0.18em; color: #a2d1a2; cursor: pointer" style-hover="color: #fbac49">← BACK TO THE INDEX</span>
+        <div style="display: flex; flex-wrap: wrap; gap: clamp(20px, 3vw, 36px); align-items: center; margin-top: 26px">
+          <div style="width: clamp(88px, 12vw, 124px); height: clamp(88px, 12vw, 124px); border-radius: 50%; background: {{ listing.tint }}; color: {{ listing.tintFg }}; display: flex; align-items: center; justify-content: center; font-family: Petrona, serif; font-size: clamp(32px, 4.5vw, 46px); flex-shrink: 0">{{ listing.initials }}</div>
+          <div style="flex: 1 1 320px; min-width: 0">
+            <div style="display: flex; flex-wrap: wrap; gap: 10px; align-items: center; margin: 0 0 12px">
+              <span style="font-size: 10.5px; letter-spacing: 0.22em; color: #fbac49">{{ listing.kindLabel }}</span>
+              <span style="display: {{ listing.verifiedDisplay }}; font-size: 10px; letter-spacing: 0.16em; color: #1b391c; background: #a2d1a2; padding: 5px 10px; border-radius: 5px">✓ CREDENTIALS VERIFIED</span>
+            </div>
+            <h1 style="font-family: Petrona, serif; font-weight: 300; font-size: clamp(32px, 5vw, 58px); margin: 0; line-height: 1.05; letter-spacing: -0.02em">{{ listing.name }}</h1>
+            <p style="font-size: clamp(15px, 1.5vw, 18px); color: #d9e8d9; margin: 12px 0 0">{{ listing.metaLine }}</p>
+            <div style="display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px">
+              <sc-for list="{{ listing.styles }}" as="st" hint-placeholder-count="3">
+                <span style="font-size: 12px; letter-spacing: 0.08em; color: #1b391c; background: #a2d1a2; padding: 7px 13px; border-radius: 999px">{{ st }}</span>
+              </sc-for>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div style="max-width: 1240px; margin: 0 auto; padding: clamp(32px, 5vw, 60px) clamp(16px, 4vw, 40px) clamp(48px, 7vw, 90px); display: flex; flex-wrap: wrap; gap: clamp(24px, 4vw, 52px); align-items: flex-start">
+
+      <main style="flex: 3 1 440px; min-width: 0; display: flex; flex-direction: column; gap: clamp(32px, 4vw, 52px)">
+
+        <div style="background: #f0f6f0; border-radius: 18px; padding: clamp(24px, 3.4vw, 44px)">
+          <p style="font-size: 10.5px; letter-spacing: 0.24em; color: #157a3d; margin: 0 0 18px">{{ listing.philosophyLabel }}</p>
+          <p style="font-family: Petrona, serif; font-weight: 300; font-size: clamp(21px, 2.5vw, 30px); line-height: 1.42; color: #1b391c; margin: 0; text-wrap: pretty">“{{ listing.philosophy }}”</p>
+          <p style="font-size: 15px; line-height: 1.75; color: #3d523d; margin: 22px 0 0; text-wrap: pretty">{{ listing.bio }}</p>
+        </div>
+
+        <div>
+          <h2 style="font-family: Petrona, serif; font-weight: 300; font-size: clamp(24px, 3vw, 34px); margin: 0 0 22px; letter-spacing: -0.015em">{{ listing.scheduleTitle }}</h2>
+          <div style="display: flex; flex-direction: column; gap: 1px; background: #e4ece4; border: 1px solid #e4ece4; border-radius: 14px; overflow: hidden">
+            <sc-for list="{{ listing.schedule }}" as="s" hint-placeholder-count="4">
+              <div style="background: #ffffff; padding: 16px 18px; display: flex; flex-wrap: wrap; gap: 8px 18px; align-items: baseline">
+                <span style="font-size: 12px; letter-spacing: 0.16em; color: #157a3d; flex: 0 0 104px">{{ s.day }}</span>
+                <span style="font-size: 15px; color: #1b391c; flex: 0 0 auto; font-weight: 500">{{ s.time }}</span>
+                <span style="font-size: 14.5px; color: #3d523d; flex: 1 1 180px">{{ s.what }}</span>
+                <span style="font-size: 13px; color: #8a9a8a">{{ s.where }}</span>
+              </div>
+            </sc-for>
+          </div>
+        </div>
+
+        <div style="display: {{ listingBookDisplay }}">
+          <h2 style="font-family: Petrona, serif; font-weight: 300; font-size: clamp(24px, 3vw, 34px); margin: 0 0 8px; letter-spacing: -0.015em">Book a class</h2>
+          <p style="font-size: 15px; color: #5c6f5c; margin: 0 0 22px">Live availability. Places are held for ten minutes while you pay.</p>
+          <div style="display: flex; flex-direction: column; gap: 10px">
+            <sc-for list="{{ listingSlots }}" as="s" hint-placeholder-count="3">
+              <div style="border: 1px solid #e4ece4; border-radius: 14px; padding: 18px; display: flex; flex-wrap: wrap; gap: 12px 18px; align-items: center">
+                <div style="flex: 1 1 200px; min-width: 0">
+                  <p style="font-size: 15.5px; color: #1b391c; margin: 0; font-weight: 500">{{ s.what }}</p>
+                  <p style="font-size: 13px; color: #5c6f5c; margin: 5px 0 0">{{ s.day }} · {{ s.time }} · {{ s.where }}</p>
+                </div>
+                <span style="font-size: 13px; color: {{ s.capacityColor }}; flex: 0 0 auto">{{ s.capacityLabel }}</span>
+                <span style="font-size: 15px; color: #1b391c; flex: 0 0 auto; font-weight: 500">{{ s.priceLabel }}</span>
+                <span onClick="{{ s.book }}" style="font-size: 11.5px; letter-spacing: 0.16em; background: #1b391c; color: #ffffff; padding: 12px 20px; border-radius: 999px; cursor: pointer; flex: 0 0 auto" style-hover="background: #ff6540">BOOK</span>
+              </div>
+            </sc-for>
+          </div>
+        </div>
+
+        <div>
+          <h2 style="font-family: Petrona, serif; font-weight: 300; font-size: clamp(24px, 3vw, 34px); margin: 0 0 22px; letter-spacing: -0.015em">{{ listing.reviewsTitle }}</h2>
+          <div style="display: flex; flex-direction: column; gap: 14px">
+            <sc-for list="{{ listing.reviews }}" as="r" hint-placeholder-count="3">
+              <div style="border: 1px solid #e4ece4; border-radius: 14px; padding: 22px">
+                <p style="font-size: 15.5px; line-height: 1.7; color: #3d523d; margin: 0; text-wrap: pretty">“{{ r.text }}”</p>
+                <p style="font-size: 12.5px; color: #8a9a8a; margin: 14px 0 0">{{ r.author }} · {{ r.when }}</p>
+              </div>
+            </sc-for>
+          </div>
+          <p style="font-size: 13px; color: #8a9a8a; margin: 18px 0 0">Showing 2 of {{ listing.reviewCount }} reviews.</p>
+        </div>
+      </main>
+
+      <aside style="flex: 1 1 270px; min-width: 250px; position: sticky; top: 92px; display: flex; flex-direction: column; gap: 18px">
+        <div style="border: 1px solid #e4ece4; border-radius: 18px; padding: 24px; display: flex; flex-direction: column; gap: 18px">
+          <span onClick="{{ listingCta }}" style="background: #ff6540; color: #ffffff; text-align: center; padding: 16px; border-radius: 999px; font-size: 12px; letter-spacing: 0.18em; cursor: pointer" style-hover="background: #1b391c">{{ listing.ctaLabel }}</span>
+          <div style="display: flex; flex-direction: column; gap: 12px; border-top: 1px solid #f0f6f0; padding-top: 18px">
+            <sc-for list="{{ listing.facts }}" as="f" hint-placeholder-count="4">
+              <div style="display: flex; gap: 12px; justify-content: space-between">
+                <span style="font-size: 13px; color: #8a9a8a">{{ f.label }}</span>
+                <span style="font-size: 13.5px; color: #1b391c; text-align: right">{{ f.value }}</span>
+              </div>
+            </sc-for>
+          </div>
+          <div style="border-top: 1px solid #f0f6f0; padding-top: 18px">
+            <p style="font-size: 10.5px; letter-spacing: 0.2em; color: #157a3d; margin: 0 0 12px">ELSEWHERE</p>
+            <div style="display: flex; flex-wrap: wrap; gap: 8px">
+              <sc-for list="{{ listing.socials }}" as="s" hint-placeholder-count="3">
+                <a href="#" style="font-size: 12px; letter-spacing: 0.1em; color: #157a3d; border: 1px solid #e4ece4; padding: 8px 13px; border-radius: 999px" style-hover="border-color: #ff6540; color: #ff6540">{{ s }}</a>
+              </sc-for>
+            </div>
+          </div>
+        </div>
+        <div style="background: #f0f6f0; border-radius: 18px; padding: 22px">
+          <p style="font-size: 10.5px; letter-spacing: 0.2em; color: #157a3d; margin: 0 0 10px">WHERE</p>
+          <p style="font-size: 15px; line-height: 1.65; color: #1b391c; margin: 0">{{ listing.address }}</p>
+        </div>
+      </aside>
+    </div>
+  </div>
+  </sc-if>
+
+  <sc-if value="{{ isBlog }}" hint-placeholder-val="{{ false }}">
+  <div style="background: #ffffff; padding: clamp(28px, 4vw, 52px) clamp(16px, 4vw, 40px) clamp(48px, 7vw, 90px)">
+    <div style="max-width: 1100px; margin: 0 auto">
+      <p style="font-size: 11px; letter-spacing: 0.28em; color: #157a3d; margin: 0 0 12px">THE BLOG</p>
+      <h1 style="font-family: Petrona, serif; font-weight: 300; font-size: clamp(30px, 4.4vw, 52px); margin: 0 0 14px; letter-spacing: -0.02em">Writing about the practice</h1>
+      <p style="font-size: 17px; line-height: 1.7; color: #5c6f5c; margin: 0 0 44px; max-width: 60ch">Plain, useful essays on styles, lineages, breathwork and what actually happens in a class — written with the people in the index.</p>
+
+      <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 32px">
+        <sc-for list="{{ posts }}" as="p" hint-placeholder-count="6">
+          <div onClick="{{ p.open }}" style="cursor: pointer; display: flex; flex-direction: column; gap: 12px">
+            <div style="height: 190px; border-radius: 14px; background: {{ p.tint }}; display: flex; align-items: flex-end; padding: 16px">
+              <span style="font-size: 10.5px; letter-spacing: 0.2em; color: #1b391c; background: #ffffff; padding: 6px 11px; border-radius: 999px">{{ p.category }}</span>
+            </div>
+            <h3 style="font-family: Petrona, serif; font-weight: 400; font-size: 23px; line-height: 1.25; margin: 4px 0 0; text-wrap: pretty">{{ p.title }}</h3>
+            <p style="font-size: 14.5px; line-height: 1.65; color: #5c6f5c; margin: 0">{{ p.excerpt }}</p>
+            <span style="font-size: 12px; color: #8a9a8a">{{ p.meta }}</span>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+  </div>
+  </sc-if>
+
+  <sc-if value="{{ isArticle }}" hint-placeholder-val="{{ false }}">
+  <div style="background: #ffffff; padding: clamp(28px, 4vw, 52px) clamp(16px, 4vw, 40px) clamp(48px, 7vw, 90px)">
+    <div style="max-width: 720px; margin: 0 auto">
+      <span onClick="{{ goBlog }}" style="font-size: 11.5px; letter-spacing: 0.18em; color: #157a3d; cursor: pointer" style-hover="color: #ff6540">← THE BLOG</span>
+      <p style="font-size: 10.5px; letter-spacing: 0.22em; color: #157a3d; margin: 30px 0 14px">{{ post.category }}</p>
+      <h1 style="font-family: Petrona, serif; font-weight: 300; font-size: clamp(30px, 4.6vw, 50px); line-height: 1.1; margin: 0; letter-spacing: -0.02em; text-wrap: pretty">{{ post.title }}</h1>
+      <p style="font-size: 13.5px; color: #8a9a8a; margin: 20px 0 0">{{ post.meta }}</p>
+      <div style="height: clamp(180px, 26vw, 300px); border-radius: 16px; background: {{ post.tint }}; margin: 32px 0 40px"></div>
+      <sc-for list="{{ post.body }}" as="b" hint-placeholder-count="6">
+        <p style="font-size: 17.5px; line-height: 1.8; color: #2b3f2b; margin: 0 0 26px; text-wrap: pretty">{{ b }}</p>
+      </sc-for>
+      <div style="border-top: 1px solid #e4ece4; margin-top: 24px; padding-top: 32px">
+        <p style="font-size: 10.5px; letter-spacing: 0.2em; color: #157a3d; margin: 0 0 16px">FIND SOMEONE FOR THIS</p>
+        <span onClick="{{ goDirectory }}" style="display: inline-block; background: #1b391c; color: #ffffff; padding: 16px 28px; border-radius: 999px; font-size: 12px; letter-spacing: 0.18em; cursor: pointer" style-hover="background: #ff6540">BROWSE THE INDEX</span>
+      </div>
+    </div>
+  </div>
+  </sc-if>
+
+  <sc-if value="{{ isBooking }}" hint-placeholder-val="{{ false }}">
+  <div style="background: #ffffff; padding: clamp(28px, 4vw, 52px) clamp(16px, 4vw, 40px) clamp(48px, 7vw, 90px)">
+    <div style="max-width: 760px; margin: 0 auto">
+      <span onClick="{{ goDirectory }}" style="font-size: 11.5px; letter-spacing: 0.18em; color: #157a3d; cursor: pointer" style-hover="color: #ff6540">← THE INDEX</span>
+
+      <sc-if value="{{ bookStepChoose }}" hint-placeholder-val="{{ false }}">
+        <div style="margin-top: 26px">
+          <p style="font-size: 11px; letter-spacing: 0.28em; color: #157a3d; margin: 0 0 12px">STEP 1 OF 3 · CHOOSE A CLASS</p>
+          <h1 style="font-family: Petrona, serif; font-weight: 300; font-size: clamp(28px, 4vw, 44px); margin: 0 0 26px; letter-spacing: -0.02em">{{ bookListing.name }}</h1>
+          <div style="display: flex; flex-direction: column; gap: 10px">
+            <sc-for list="{{ bookSlots }}" as="s" hint-placeholder-count="3">
+              <div onClick="{{ s.book }}" style="border: 1px solid #e4ece4; border-radius: 14px; padding: 18px; cursor: pointer; display: flex; flex-wrap: wrap; gap: 12px 18px; align-items: center; transition: border-color .18s" style-hover="border-color: #a2d1a2">
+                <div style="flex: 1 1 200px; min-width: 0">
+                  <p style="font-size: 15.5px; color: #1b391c; margin: 0; font-weight: 500">{{ s.what }}</p>
+                  <p style="font-size: 13px; color: #5c6f5c; margin: 5px 0 0">{{ s.day }} · {{ s.time }} · {{ s.where }}</p>
+                </div>
+                <span style="font-size: 13px; color: {{ s.capacityColor }}">{{ s.capacityLabel }}</span>
+                <span style="font-size: 15px; color: #1b391c; font-weight: 500">{{ s.priceLabel }}</span>
+              </div>
+            </sc-for>
+          </div>
+        </div>
+      </sc-if>
+
+      <sc-if value="{{ bookStepDetails }}" hint-placeholder-val="{{ false }}">
+        <div style="margin-top: 26px">
+          <p style="font-size: 11px; letter-spacing: 0.28em; color: #157a3d; margin: 0 0 12px">STEP 2 OF 3 · YOUR DETAILS</p>
+          <h1 style="font-family: Petrona, serif; font-weight: 300; font-size: clamp(26px, 3.6vw, 40px); margin: 0 0 26px; letter-spacing: -0.02em">{{ bookSlot.what }}</h1>
+          <div style="background: #f0f6f0; border-radius: 14px; padding: 20px; margin-bottom: 26px; display: flex; flex-wrap: wrap; gap: 8px 24px">
+            <span style="font-size: 14.5px; color: #1b391c">{{ bookListing.name }}</span>
+            <span style="font-size: 14.5px; color: #3d523d">{{ bookSlot.day }} · {{ bookSlot.time }}</span>
+            <span style="font-size: 14.5px; color: #3d523d">{{ bookSlot.where }}</span>
+            <span style="font-size: 14.5px; color: #157a3d; margin-left: auto">{{ bookTotal }}</span>
+          </div>
+          <div style="display: flex; flex-direction: column; gap: 18px; max-width: 460px">
+            <label style="display: flex; flex-direction: column; gap: 7px">
+              <span style="font-size: 10.5px; letter-spacing: 0.2em; color: #157a3d">YOUR NAME</span>
+              <input value="{{ form.name }}" onChange="{{ setName }}" placeholder="As the teacher should greet you" style="border: 1px solid #e4ece4; border-radius: 10px; padding: 13px 14px; font-size: 16px; color: #1b391c; outline: none" style-focus="border-color: #a2d1a2" />
+            </label>
+            <label style="display: flex; flex-direction: column; gap: 7px">
+              <span style="font-size: 10.5px; letter-spacing: 0.2em; color: #157a3d">EMAIL</span>
+              <input value="{{ form.email }}" onChange="{{ setEmail }}" placeholder="For the confirmation and any link" style="border: 1px solid #e4ece4; border-radius: 10px; padding: 13px 14px; font-size: 16px; color: #1b391c; outline: none" style-focus="border-color: #a2d1a2" />
+            </label>
+            <p style="font-size: 13px; line-height: 1.6; color: #8a9a8a; margin: 0">That is all we ask. Injuries and questions go straight to the teacher after booking.</p>
+            <div style="display: flex; flex-wrap: wrap; gap: 12px; align-items: center">
+              <span onClick="{{ toDetails }}" style="background: {{ detailsBtn.bg }}; color: {{ detailsBtn.fg }}; padding: 16px 30px; border-radius: 999px; font-size: 12px; letter-spacing: 0.18em; cursor: {{ detailsBtn.cursor }}">CONTINUE TO PAYMENT</span>
+              <span onClick="{{ backToChoose }}" style="font-size: 12px; letter-spacing: 0.16em; color: #8a9a8a; cursor: pointer" style-hover="color: #ff6540">CHANGE CLASS</span>
+            </div>
+          </div>
+        </div>
+      </sc-if>
+
+      <sc-if value="{{ bookStepPay }}" hint-placeholder-val="{{ false }}">
+        <div style="margin-top: 26px">
+          <p style="font-size: 11px; letter-spacing: 0.28em; color: #157a3d; margin: 0 0 12px">STEP 3 OF 3 · PAYMENT</p>
+          <h1 style="font-family: Petrona, serif; font-weight: 300; font-size: clamp(26px, 3.6vw, 40px); margin: 0 0 8px; letter-spacing: -0.02em">Paying {{ bookTotal }}</h1>
+          <p style="font-size: 15px; color: #5c6f5c; margin: 0 0 26px">{{ bookSlot.what }} · {{ bookSlot.day }} {{ bookSlot.time }} · {{ bookListing.name }}</p>
+          <div style="display: flex; flex-direction: column; gap: 18px; max-width: 460px">
+            <label style="display: flex; flex-direction: column; gap: 7px">
+              <span style="font-size: 10.5px; letter-spacing: 0.2em; color: #157a3d">CARD NUMBER</span>
+              <input value="{{ form.card }}" onChange="{{ setCard }}" placeholder="4242 4242 4242 4242" style="border: 1px solid #e4ece4; border-radius: 10px; padding: 13px 14px; font-size: 16px; color: #1b391c; outline: none; letter-spacing: 0.04em" style-focus="border-color: #a2d1a2" />
+            </label>
+            <div style="display: flex; gap: 14px">
+              <label style="display: flex; flex-direction: column; gap: 7px; flex: 1 1 0">
+                <span style="font-size: 10.5px; letter-spacing: 0.2em; color: #157a3d">EXPIRY</span>
+                <input value="{{ form.expiry }}" onChange="{{ setExpiry }}" placeholder="MM/YY" style="border: 1px solid #e4ece4; border-radius: 10px; padding: 13px 14px; font-size: 16px; color: #1b391c; outline: none" style-focus="border-color: #a2d1a2" />
+              </label>
+              <label style="display: flex; flex-direction: column; gap: 7px; flex: 1 1 0">
+                <span style="font-size: 10.5px; letter-spacing: 0.2em; color: #157a3d">CVC</span>
+                <input value="{{ form.cvc }}" onChange="{{ setCvc }}" placeholder="123" style="border: 1px solid #e4ece4; border-radius: 10px; padding: 13px 14px; font-size: 16px; color: #1b391c; outline: none" style-focus="border-color: #a2d1a2" />
+              </label>
+            </div>
+            <p style="font-size: 13px; line-height: 1.6; color: #8a9a8a; margin: 0">Cancel free up to twelve hours before. After that the teacher keeps the fee — they have held the space.</p>
+            <div style="display: flex; flex-wrap: wrap; gap: 12px; align-items: center">
+              <span onClick="{{ toPay }}" style="background: {{ payBtn.bg }}; color: {{ payBtn.fg }}; padding: 16px 30px; border-radius: 999px; font-size: 12px; letter-spacing: 0.18em; cursor: {{ payBtn.cursor }}">PAY &amp; CONFIRM</span>
+              <span onClick="{{ backToDetails }}" style="font-size: 12px; letter-spacing: 0.16em; color: #8a9a8a; cursor: pointer" style-hover="color: #ff6540">BACK</span>
+            </div>
+          </div>
+        </div>
+      </sc-if>
+
+      <sc-if value="{{ bookStepDone }}" hint-placeholder-val="{{ false }}">
+        <div style="margin-top: 26px; border: 1px solid #a2d1a2; border-radius: 18px; padding: clamp(24px, 3.4vw, 44px); background: #f0f6f0">
+          <p style="font-size: 11px; letter-spacing: 0.28em; color: #157a3d; margin: 0 0 14px">BOOKED · {{ bookRef }}</p>
+          <h1 style="font-family: Petrona, serif; font-weight: 300; font-size: clamp(28px, 4vw, 44px); margin: 0 0 16px; letter-spacing: -0.02em">You have a place, {{ form.name }}.</h1>
+          <p style="font-size: 16.5px; line-height: 1.7; color: #3d523d; margin: 0 0 8px">{{ bookSlot.what }} with {{ bookListing.name }}, {{ bookSlot.day }} at {{ bookSlot.time }}.</p>
+          <p style="font-size: 15px; color: #5c6f5c; margin: 0 0 26px">Confirmation sent to {{ form.email }}. {{ bookSlot.where }}.</p>
+          <div style="display: flex; flex-wrap: wrap; gap: 12px">
+            <span onClick="{{ bookAgain }}" style="background: #1b391c; color: #ffffff; padding: 16px 28px; border-radius: 999px; font-size: 12px; letter-spacing: 0.18em; cursor: pointer" style-hover="background: #ff6540">BACK TO THE LISTING</span>
+            <span onClick="{{ goDirectory }}" style="border: 1px solid #1b391c; color: #1b391c; padding: 16px 28px; border-radius: 999px; font-size: 12px; letter-spacing: 0.18em; cursor: pointer" style-hover="border-color: #ff6540; color: #ff6540">FIND ANOTHER CLASS</span>
+          </div>
+        </div>
+      </sc-if>
+    </div>
+  </div>
+  </sc-if>
+
+  <sc-if value="{{ isManage }}" hint-placeholder-val="{{ false }}">
+  <div style="background: #ffffff; padding: clamp(28px, 4vw, 52px) clamp(16px, 4vw, 40px) clamp(48px, 7vw, 90px)">
+    <div style="max-width: 1000px; margin: 0 auto">
+      <p style="font-size: 11px; letter-spacing: 0.28em; color: #157a3d; margin: 0 0 12px">FOR TEACHERS &amp; STUDIOS</p>
+      <h1 style="font-family: Petrona, serif; font-weight: 300; font-size: clamp(30px, 4.4vw, 52px); margin: 0 0 14px; letter-spacing: -0.02em">Your timetable and capacity</h1>
+      <p style="font-size: 17px; line-height: 1.7; color: #5c6f5c; margin: 0 0 34px; max-width: 62ch">Add each class, set how many places it holds, and students can book and pay directly. Listing stays free — we take nothing from the class fee.</p>
+
+      <label style="display: flex; flex-direction: column; gap: 7px; max-width: 420px; margin-bottom: 32px">
+        <span style="font-size: 10.5px; letter-spacing: 0.2em; color: #157a3d">MANAGING</span>
+        <select value="{{ manageId }}" onChange="{{ setManageId }}" style="border: 1px solid #e4ece4; border-radius: 10px; padding: 13px 14px; font-size: 16px; color: #1b391c; outline: none; background: #ffffff; cursor: pointer">
+          <sc-for list="{{ manageOptions }}" as="o" hint-placeholder-count="6">
+            <option value="{{ o.id }}">{{ o.label }}</option>
+          </sc-for>
+        </select>
+      </label>
+
+      <div style="display: flex; flex-wrap: wrap; gap: 14px; margin-bottom: 30px">
+        <div style="flex: 1 1 160px; border: 1px solid #e4ece4; border-radius: 14px; padding: 20px">
+          <p style="font-size: 30px; font-family: Petrona, serif; color: #1b391c; margin: 0">{{ manageSlots.length }}</p>
+          <p style="font-size: 13px; color: #5c6f5c; margin: 6px 0 0">classes on the timetable</p>
+        </div>
+        <div style="flex: 1 1 160px; border: 1px solid #e4ece4; border-radius: 14px; padding: 20px">
+          <p style="font-size: 30px; font-family: Petrona, serif; color: #1b391c; margin: 0">{{ manageTotalPlaces }}</p>
+          <p style="font-size: 13px; color: #5c6f5c; margin: 6px 0 0">places offered each week</p>
+        </div>
+        <div style="flex: 1 1 160px; border: 1px solid #e4ece4; border-radius: 14px; padding: 20px">
+          <p style="font-size: 30px; font-family: Petrona, serif; color: #157a3d; margin: 0">{{ manageTotalBooked }}</p>
+          <p style="font-size: 13px; color: #5c6f5c; margin: 6px 0 0">booked right now</p>
+        </div>
+      </div>
+
+      <div style="display: flex; flex-direction: column; gap: 10px; margin-bottom: 34px">
+        <sc-for list="{{ manageSlots }}" as="s" hint-placeholder-count="4">
+          <div style="border: 1px solid #e4ece4; border-radius: 14px; padding: 18px; display: flex; flex-wrap: wrap; gap: 12px 18px; align-items: center">
+            <div style="flex: 1 1 220px; min-width: 0">
+              <p style="font-size: 15.5px; color: #1b391c; margin: 0; font-weight: 500">{{ s.what }}</p>
+              <p style="font-size: 13px; color: #5c6f5c; margin: 5px 0 0">{{ s.day }} · {{ s.time }} · {{ s.where }}</p>
+            </div>
+            <span style="font-size: 13px; color: {{ s.capacityColor }}">{{ s.taken }} booked</span>
+            <label style="display: flex; align-items: center; gap: 8px">
+              <span style="font-size: 11px; letter-spacing: 0.14em; color: #8a9a8a">CAP</span>
+              <input value="{{ s.capacity }}" onChange="{{ s.setCap }}" style="width: 62px; border: 1px solid #e4ece4; border-radius: 8px; padding: 9px 10px; font-size: 15px; color: #1b391c; outline: none; text-align: center" style-focus="border-color: #a2d1a2" />
+            </label>
+            <span style="font-size: 14.5px; color: #1b391c; font-weight: 500">{{ s.priceLabel }}</span>
+            <span onClick="{{ s.remove }}" style="font-size: 11px; letter-spacing: 0.14em; color: #8a9a8a; cursor: pointer" style-hover="color: #ff6540">REMOVE</span>
+          </div>
+        </sc-for>
+      </div>
+
+      <div style="border: 1px solid #a2d1a2; border-radius: 18px; padding: clamp(20px, 3vw, 32px); background: #f0f6f0">
+        <h2 style="font-family: Petrona, serif; font-weight: 400; font-size: 24px; margin: 0 0 20px">Add a class</h2>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 14px">
+          <label style="display: flex; flex-direction: column; gap: 7px">
+            <span style="font-size: 10.5px; letter-spacing: 0.2em; color: #157a3d">DAY</span>
+            <select value="{{ draft.day }}" onChange="{{ setDraftDay }}" style="border: 1px solid #d4e3d4; border-radius: 10px; padding: 12px 13px; font-size: 15px; color: #1b391c; outline: none; background: #ffffff; cursor: pointer">
+              <sc-for list="{{ dayOptions }}" as="d" hint-placeholder-count="9">
+                <option value="{{ d }}">{{ d }}</option>
+              </sc-for>
+            </select>
+          </label>
+          <label style="display: flex; flex-direction: column; gap: 7px">
+            <span style="font-size: 10.5px; letter-spacing: 0.2em; color: #157a3d">TIME</span>
+            <input value="{{ draft.time }}" onChange="{{ setDraftTime }}" placeholder="18:30–19:45" style="border: 1px solid #d4e3d4; border-radius: 10px; padding: 12px 13px; font-size: 15px; color: #1b391c; outline: none" style-focus="border-color: #a2d1a2" />
+          </label>
+          <label style="display: flex; flex-direction: column; gap: 7px">
+            <span style="font-size: 10.5px; letter-spacing: 0.2em; color: #157a3d">CLASS</span>
+            <input value="{{ draft.what }}" onChange="{{ setDraftWhat }}" placeholder="Slow flow, all levels" style="border: 1px solid #d4e3d4; border-radius: 10px; padding: 12px 13px; font-size: 15px; color: #1b391c; outline: none" style-focus="border-color: #a2d1a2" />
+          </label>
+          <label style="display: flex; flex-direction: column; gap: 7px">
+            <span style="font-size: 10.5px; letter-spacing: 0.2em; color: #157a3d">WHERE</span>
+            <input value="{{ draft.where }}" onChange="{{ setDraftWhere }}" placeholder="Studio or Online" style="border: 1px solid #d4e3d4; border-radius: 10px; padding: 12px 13px; font-size: 15px; color: #1b391c; outline: none" style-focus="border-color: #a2d1a2" />
+          </label>
+          <label style="display: flex; flex-direction: column; gap: 7px">
+            <span style="font-size: 10.5px; letter-spacing: 0.2em; color: #157a3d">CAPACITY</span>
+            <input value="{{ draft.capacity }}" onChange="{{ setDraftCapacity }}" placeholder="16" style="border: 1px solid #d4e3d4; border-radius: 10px; padding: 12px 13px; font-size: 15px; color: #1b391c; outline: none" style-focus="border-color: #a2d1a2" />
+          </label>
+          <label style="display: flex; flex-direction: column; gap: 7px">
+            <span style="font-size: 10.5px; letter-spacing: 0.2em; color: #157a3d">PRICE</span>
+            <input value="{{ draft.price }}" onChange="{{ setDraftPrice }}" placeholder="Drop-in fee" style="border: 1px solid #d4e3d4; border-radius: 10px; padding: 12px 13px; font-size: 15px; color: #1b391c; outline: none" style-focus="border-color: #a2d1a2" />
+          </label>
+        </div>
+        <div style="display: flex; flex-wrap: wrap; gap: 16px; align-items: center; margin-top: 22px">
+          <span onClick="{{ addSlot }}" style="background: #ff6540; color: #ffffff; padding: 15px 28px; border-radius: 999px; font-size: 12px; letter-spacing: 0.18em; cursor: pointer" style-hover="background: #1b391c">ADD TO TIMETABLE</span>
+          <span style="display: {{ manageMsgDisplay }}; font-size: 14px; color: #157a3d">{{ manageMsg }}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  </sc-if>
+
+  <sc-if value="{{ isSutras }}" hint-placeholder-val="{{ false }}">
+  <div>
+    <section style="background: #1b391c; color: #ffffff; padding: clamp(36px, 5vw, 72px) clamp(16px, 4vw, 40px)">
+      <div style="max-width: 1100px; margin: 0 auto; display: flex; flex-wrap: wrap; gap: clamp(24px, 4vw, 48px); align-items: center">
+        <div style="flex: 1 1 340px; min-width: 260px">
+          <p style="font-size: 11px; letter-spacing: 0.28em; color: #a2d1a2; margin: 0 0 18px">THE SOURCE TEXT</p>
+          <h1 style="font-family: Petrona, serif; font-weight: 300; font-size: clamp(32px, 5vw, 60px); line-height: 1.05; margin: 0; letter-spacing: -0.02em">The Yoga Sutras of Patanjali</h1>
+          <p style="font-size: clamp(16px, 1.5vw, 19px); line-height: 1.7; color: #d9e8d9; margin: 20px 0 0; max-width: 50ch">196 short aphorisms, compiled somewhere between 200 BCE and 400 CE, that define what yoga actually is. Three of them mention posture.</p>
+        </div>
+        <div style="flex: 1 1 300px; min-width: 260px; height: clamp(240px, 30vw, 360px); position: relative">
+          <image-slot id="sutras-hero" shape="rounded" radius="16" placeholder="Drop an image — a palm-leaf manuscript, Devanagari text, or a statue of Patanjali"></image-slot>
+        </div>
+      </div>
+    </section>
+
+    <div style="max-width: 760px; margin: 0 auto; padding: clamp(32px, 5vw, 64px) clamp(16px, 4vw, 40px) clamp(48px, 7vw, 90px)">
+      <p style="font-size: 17.5px; line-height: 1.8; color: #2b3f2b; margin: 0 0 26px; text-wrap: pretty">Patanjali did not invent yoga and probably did not write the Sutras alone. He compiled an existing oral tradition into four short books — the <em>padas</em> — in a compressed style meant to be memorised and then unpacked by a teacher. This is why the text feels terse to the point of unhelpfulness on first reading, and why almost nobody reads it without a commentary.</p>
+      <p style="font-size: 17.5px; line-height: 1.8; color: #2b3f2b; margin: 0 0 40px; text-wrap: pretty">Its second verse is the whole definition, and it says nothing about the body: <em>yogaś citta-vṛtti-nirodhaḥ</em> — yoga is the stilling of the movements of the mind. Everything else in the text is method or consequence.</p>
+
+      <h2 style="font-family: Petrona, serif; font-weight: 300; font-size: clamp(26px, 3.4vw, 38px); margin: 0 0 24px; letter-spacing: -0.015em">The four books</h2>
+      <div style="display: flex; flex-direction: column; gap: 1px; background: #e4ece4; border: 1px solid #e4ece4; border-radius: 14px; overflow: hidden; margin-bottom: 48px">
+        <div style="background: #ffffff; padding: 20px">
+          <p style="font-size: 11px; letter-spacing: 0.18em; color: #157a3d; margin: 0 0 8px">BOOK I · SAMADHI PADA · 51 VERSES</p>
+          <p style="font-size: 15.5px; line-height: 1.7; color: #3d523d; margin: 0">What yoga is, what the mind does instead, and the states of absorption available to someone who stops it. Written as if for a reader already practising.</p>
+        </div>
+        <div style="background: #ffffff; padding: 20px">
+          <p style="font-size: 11px; letter-spacing: 0.18em; color: #157a3d; margin: 0 0 8px">BOOK II · SADHANA PADA · 55 VERSES</p>
+          <p style="font-size: 15.5px; line-height: 1.7; color: #3d523d; margin: 0">The practical book: the causes of suffering, and the eight limbs. This is where posture appears, in three verses, described only as a steady and comfortable seat.</p>
+        </div>
+        <div style="background: #ffffff; padding: 20px">
+          <p style="font-size: 11px; letter-spacing: 0.18em; color: #157a3d; margin: 0 0 8px">BOOK III · VIBHUTI PADA · 56 VERSES</p>
+          <p style="font-size: 15.5px; line-height: 1.7; color: #3d523d; margin: 0">Concentration, meditation and absorption — and a long catalogue of resulting powers, which Patanjali then warns are obstacles rather than achievements.</p>
+        </div>
+        <div style="background: #ffffff; padding: 20px">
+          <p style="font-size: 11px; letter-spacing: 0.18em; color: #157a3d; margin: 0 0 8px">BOOK IV · KAIVALYA PADA · 34 VERSES</p>
+          <p style="font-size: 15.5px; line-height: 1.7; color: #3d523d; margin: 0">The philosophical close: the nature of mind and matter, and liberation as the end of identification rather than the gaining of anything.</p>
+        </div>
+      </div>
+
+      <h2 style="font-family: Petrona, serif; font-weight: 300; font-size: clamp(26px, 3.4vw, 38px); margin: 0 0 10px; letter-spacing: -0.015em">The eight limbs</h2>
+      <p style="font-size: 16px; line-height: 1.7; color: #5c6f5c; margin: 0 0 24px">Ashtanga — literally eight limbs. The word names this structure, long before it named a sequence of postures.</p>
+      <div id="eight-limbs-figure" data-om-raster="true" style="background: #f7faf7; border: 1px solid #e4ece4; border-radius: 18px; padding: clamp(22px, 3.4vw, 40px); margin-bottom: 48px">
+        <div style="display: flex; flex-wrap: wrap; gap: clamp(24px, 4vw, 44px); align-items: center; justify-content: center">
+
+          <div style="flex: 0 0 auto; width: min(380px, 82vw); aspect-ratio: 1; position: relative">
+            <div style="position: absolute; inset: 0; border-radius: 50%; background: #f0f6f0; border: 1px solid #dcebdc"></div>
+            <div style="position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); width: 87.5%; height: 87.5%; border-radius: 50%; background: #dcebdc"></div>
+            <div style="position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); width: 75%; height: 75%; border-radius: 50%; background: #c6dfc6"></div>
+            <div style="position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); width: 62.5%; height: 62.5%; border-radius: 50%; background: #a2d1a2"></div>
+            <div style="position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); width: 50%; height: 50%; border-radius: 50%; background: #7cb87c"></div>
+            <div style="position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); width: 37.5%; height: 37.5%; border-radius: 50%; background: #4a9a58"></div>
+            <div style="position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); width: 25%; height: 25%; border-radius: 50%; background: #157a3d"></div>
+            <div style="position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); width: 12.5%; height: 12.5%; border-radius: 50%; background: #ff6540"></div>
+
+            <span style="position: absolute; left: 50%; top: 1.4%; transform: translateX(-50%); font-size: 12px; font-weight: 500; color: #1b391c">1</span>
+            <span style="position: absolute; left: 50%; top: 7.6%; transform: translateX(-50%); font-size: 12px; font-weight: 500; color: #1b391c">2</span>
+            <span style="position: absolute; left: 50%; top: 13.8%; transform: translateX(-50%); font-size: 12px; font-weight: 500; color: #1b391c">3</span>
+            <span style="position: absolute; left: 50%; top: 20%; transform: translateX(-50%); font-size: 12px; font-weight: 500; color: #1b391c">4</span>
+            <span style="position: absolute; left: 50%; top: 26.2%; transform: translateX(-50%); font-size: 12px; font-weight: 500; color: #1b391c">5</span>
+            <span style="position: absolute; left: 50%; top: 32.4%; transform: translateX(-50%); font-size: 12px; font-weight: 500; color: #ffffff">6</span>
+            <span style="position: absolute; left: 50%; top: 38.6%; transform: translateX(-50%); font-size: 12px; font-weight: 500; color: #ffffff">7</span>
+            <span style="position: absolute; left: 50%; top: 46.4%; transform: translate(-50%, -50%); font-size: 11px; font-weight: 500; color: #ffffff">8</span>
+
+            <span style="position: absolute; left: 50%; bottom: -4px; transform: translateX(-50%); font-size: 10px; letter-spacing: 0.2em; color: #8a9a8a; white-space: nowrap">OUTWARD CONDUCT</span>
+            <span style="position: absolute; left: 50%; top: 50%; transform: translate(-50%, 26px); font-size: 10px; letter-spacing: 0.2em; color: #ffffff; white-space: nowrap">INWARD</span>
+          </div>
+
+          <div style="flex: 1 1 300px; min-width: 260px; display: flex; flex-direction: column; gap: 1px">
+            <div style="display: flex; gap: 14px; align-items: baseline; padding: 11px 0; border-bottom: 1px solid #e4ece4">
+              <span style="flex: 0 0 14px; height: 14px; border-radius: 50%; background: #f0f6f0; border: 1px solid #c6dfc6"></span>
+              <span style="font-family: Petrona, serif; font-size: 19px; color: #1b391c; flex: 0 0 118px">1 · Yama</span>
+              <span style="font-size: 14px; line-height: 1.55; color: #5c6f5c; flex: 1 1 160px">How you treat others. Non-violence, truthfulness, non-stealing, restraint, non-grasping.</span>
+            </div>
+            <div style="display: flex; gap: 14px; align-items: baseline; padding: 11px 0; border-bottom: 1px solid #e4ece4">
+              <span style="flex: 0 0 14px; height: 14px; border-radius: 50%; background: #dcebdc"></span>
+              <span style="font-family: Petrona, serif; font-size: 19px; color: #1b391c; flex: 0 0 118px">2 · Niyama</span>
+              <span style="font-size: 14px; line-height: 1.55; color: #5c6f5c; flex: 1 1 160px">How you treat yourself. Cleanliness, contentment, discipline, self-study, surrender.</span>
+            </div>
+            <div style="display: flex; gap: 14px; align-items: baseline; padding: 11px 0; border-bottom: 1px solid #e4ece4">
+              <span style="flex: 0 0 14px; height: 14px; border-radius: 50%; background: #c6dfc6"></span>
+              <span style="font-family: Petrona, serif; font-size: 19px; color: #1b391c; flex: 0 0 118px">3 · Asana</span>
+              <span style="font-size: 14px; line-height: 1.55; color: #5c6f5c; flex: 1 1 160px">A seat that is steady and comfortable. That is the entire instruction given.</span>
+            </div>
+            <div style="display: flex; gap: 14px; align-items: baseline; padding: 11px 0; border-bottom: 1px solid #e4ece4">
+              <span style="flex: 0 0 14px; height: 14px; border-radius: 50%; background: #a2d1a2"></span>
+              <span style="font-family: Petrona, serif; font-size: 19px; color: #1b391c; flex: 0 0 118px">4 · Pranayama</span>
+              <span style="font-size: 14px; line-height: 1.55; color: #5c6f5c; flex: 1 1 160px">Regulation of the breath, and through it the regulation of attention.</span>
+            </div>
+            <div style="display: flex; gap: 14px; align-items: baseline; padding: 11px 0; border-bottom: 1px solid #e4ece4">
+              <span style="flex: 0 0 14px; height: 14px; border-radius: 50%; background: #7cb87c"></span>
+              <span style="font-family: Petrona, serif; font-size: 19px; color: #1b391c; flex: 0 0 118px">5 · Pratyahara</span>
+              <span style="font-size: 14px; line-height: 1.55; color: #5c6f5c; flex: 1 1 160px">Withdrawing the senses from what they habitually chase.</span>
+            </div>
+            <div style="display: flex; gap: 14px; align-items: baseline; padding: 11px 0; border-bottom: 1px solid #e4ece4">
+              <span style="flex: 0 0 14px; height: 14px; border-radius: 50%; background: #4a9a58"></span>
+              <span style="font-family: Petrona, serif; font-size: 19px; color: #1b391c; flex: 0 0 118px">6 · Dharana</span>
+              <span style="font-size: 14px; line-height: 1.55; color: #5c6f5c; flex: 1 1 160px">Concentration — holding attention on one thing, deliberately.</span>
+            </div>
+            <div style="display: flex; gap: 14px; align-items: baseline; padding: 11px 0; border-bottom: 1px solid #e4ece4">
+              <span style="flex: 0 0 14px; height: 14px; border-radius: 50%; background: #157a3d"></span>
+              <span style="font-family: Petrona, serif; font-size: 19px; color: #1b391c; flex: 0 0 118px">7 · Dhyana</span>
+              <span style="font-size: 14px; line-height: 1.55; color: #5c6f5c; flex: 1 1 160px">Meditation — when that holding becomes continuous and no longer needs effort.</span>
+            </div>
+            <div style="display: flex; gap: 14px; align-items: baseline; padding: 11px 0">
+              <span style="flex: 0 0 14px; height: 14px; border-radius: 50%; background: #ff6540"></span>
+              <span style="font-family: Petrona, serif; font-size: 19px; color: #1b391c; flex: 0 0 118px">8 · Samadhi</span>
+              <span style="font-size: 14px; line-height: 1.55; color: #5c6f5c; flex: 1 1 160px">Absorption, in which the separation between observer and observed drops away.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div style="background: #f0f6f0; border-radius: 18px; padding: clamp(24px, 3.4vw, 40px); margin-bottom: 44px">
+        <p style="font-size: 10.5px; letter-spacing: 0.24em; color: #157a3d; margin: 0 0 18px">WHY IT MATTERS TO A TUESDAY CLASS</p>
+        <p style="font-family: Petrona, serif; font-weight: 300; font-size: clamp(20px, 2.4vw, 28px); line-height: 1.45; color: #1b391c; margin: 0; text-wrap: pretty">If posture is one of eight limbs and gets three verses out of 196, then a practice built entirely on it is not wrong — it is simply small. Most teachers in this index will tell you the same thing in their own words.</p>
+      </div>
+
+      <h2 style="font-family: Petrona, serif; font-weight: 300; font-size: clamp(24px, 3vw, 32px); margin: 0 0 18px; letter-spacing: -0.015em">Where to start reading</h2>
+      <p style="font-size: 16.5px; line-height: 1.75; color: #2b3f2b; margin: 0 0 14px">Read a translation with commentary, not a bare one. Bare translations of a deliberately compressed text produce confident misreadings.</p>
+      <p style="font-size: 16.5px; line-height: 1.75; color: #2b3f2b; margin: 0 0 34px">Read Book II first, then Book I. Book III's list of powers derails most first readings, and Book IV means little until the rest has settled.</p>
+      <span onClick="{{ goDirectory }}" style="display: inline-block; background: #1b391c; color: #ffffff; padding: 16px 28px; border-radius: 999px; font-size: 12px; letter-spacing: 0.18em; cursor: pointer" style-hover="background: #ff6540">FIND A TEACHER WHO TEACHES PHILOSOPHY</span>
+    </div>
+  </div>
+  </sc-if>
+
+  <sc-if value="{{ isRishikesh }}" hint-placeholder-val="{{ false }}">
+  <div>
+    <section style="background: #1b391c; color: #ffffff; padding: clamp(36px, 5vw, 72px) clamp(16px, 4vw, 40px)">
+      <div style="max-width: 1240px; margin: 0 auto">
+        <p style="font-size: 11px; letter-spacing: 0.28em; color: #a2d1a2; margin: 0 0 18px">PLACES · UTTARAKHAND, INDIA</p>
+        <h1 style="font-family: Petrona, serif; font-weight: 300; font-size: clamp(34px, 5.6vw, 66px); line-height: 1.05; margin: 0; letter-spacing: -0.02em">Rishikesh</h1>
+        <p style="font-size: clamp(16px, 1.6vw, 20px); line-height: 1.7; color: #d9e8d9; margin: 20px 0 0; max-width: 58ch">Where the Ganges leaves the Himalaya and the yoga tourism industry begins. A pilgrimage town of 100,000 that trains a large share of the world's yoga teachers.</p>
+        <div style="height: clamp(220px, 30vw, 380px); margin-top: clamp(24px, 4vw, 40px); position: relative">
+          <image-slot id="rishikesh-hero" shape="rounded" radius="16" placeholder="Drop a Rishikesh image — the Ganges at Ram Jhula, or the ghats at dusk"></image-slot>
+        </div>
+      </div>
+    </section>
+
+    <div style="max-width: 1240px; margin: 0 auto; padding: clamp(32px, 5vw, 64px) clamp(16px, 4vw, 40px) clamp(48px, 7vw, 90px)">
+      <div style="display: flex; flex-wrap: wrap; gap: clamp(28px, 4vw, 56px)">
+        <div style="flex: 2 1 420px; min-width: 300px">
+          <h2 style="font-family: Petrona, serif; font-weight: 300; font-size: clamp(26px, 3.4vw, 38px); margin: 0 0 22px; letter-spacing: -0.015em">A short history</h2>
+          <p style="font-size: 17px; line-height: 1.8; color: #2b3f2b; margin: 0 0 22px; text-wrap: pretty">Rishikesh has been a place of retreat for far longer than it has been a destination. Its name — from <em>rishi</em>, seer — reflects a tradition of ascetics settling where the Ganges emerges from the mountains, and the town appears in Puranic literature as a stop on the pilgrimage route north to Badrinath and Kedarnath. For most of its history it was a staging post: pilgrims rested, bathed at the ghats, and walked on.</p>
+          <p style="font-size: 17px; line-height: 1.8; color: #2b3f2b; margin: 0 0 22px; text-wrap: pretty">The modern ashram town took shape in the twentieth century. Swami Sivananda founded the Divine Life Society here in 1936 and, unusually for the time, taught and published in English — which is much of why Rishikesh rather than Haridwar or Varanasi became the place foreign students came to. His students went on to found lineages of their own, and by the 1950s the west bank held a cluster of teaching ashrams.</p>
+          <p style="font-size: 17px; line-height: 1.8; color: #2b3f2b; margin: 0 0 22px; text-wrap: pretty">In February 1968 the Beatles arrived at Maharishi Mahesh Yogi's Transcendental Meditation ashram and stayed several weeks, writing much of what became the White Album. The visit turned a regional pilgrimage town into a global one almost overnight. The ashram itself was abandoned in the 1990s and its graffiti-covered meditation cells now sit inside the Rajaji reserve, open to visitors.</p>
+          <p style="font-size: 17px; line-height: 1.8; color: #2b3f2b; margin: 0 0 22px; text-wrap: pretty">What followed is harder to romanticise. Rishikesh now hosts hundreds of teacher trainings, and the quality range is enormous — from ashrams teaching in six-month terms to four-week certificate mills. The town also carries an alcohol and meat ban, a March yoga festival that draws tens of thousands, and a whitewater rafting industry sharing the same river. All of it coexists, not always comfortably.</p>
+          <p style="font-size: 17px; line-height: 1.8; color: #2b3f2b; margin: 0 0 0; text-wrap: pretty">Come in October to March. April and May are hot, and the monsoon from June closes much of the river.</p>
+        </div>
+
+        <div style="flex: 1 1 280px; min-width: 260px; display: flex; flex-direction: column; gap: 18px">
+          <div style="border: 1px solid #e4ece4; border-radius: 16px; overflow: hidden">
+            <iframe src="./rishikesh-map.html" title="Map of Rishikesh" style="width: 100%; height: 340px; border: 0; display: block"></iframe>
+            <div style="padding: 16px 18px; border-top: 1px solid #e4ece4">
+              <p style="font-size: 13.5px; line-height: 1.6; color: #5c6f5c; margin: 0">30.09° N, 78.27° E · 372m · 240km north of Delhi. Click the map to zoom; tap a pin for what is there.</p>
+            </div>
+          </div>
+          <div style="background: #f0f6f0; border-radius: 16px; padding: 20px">
+            <p style="font-size: 10.5px; letter-spacing: 0.2em; color: #157a3d; margin: 0 0 14px">GETTING THERE</p>
+            <div style="display: flex; flex-direction: column; gap: 10px">
+              <p style="font-size: 14px; line-height: 1.6; color: #3d523d; margin: 0">Jolly Grant airport (DED), 20km — an hour from Delhi.</p>
+              <p style="font-size: 14px; line-height: 1.6; color: #3d523d; margin: 0">Haridwar Junction, 25km, is the practical railhead.</p>
+              <p style="font-size: 14px; line-height: 1.6; color: #3d523d; margin: 0">Six hours by road from Delhi, longer in the monsoon.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <h2 style="font-family: Petrona, serif; font-weight: 300; font-size: clamp(26px, 3.4vw, 38px); margin: clamp(40px, 5vw, 64px) 0 24px; letter-spacing: -0.015em">What is on offer</h2>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 16px">
+        <div style="border: 1px solid #e4ece4; border-radius: 16px; padding: 22px">
+          <h3 style="font-family: Petrona, serif; font-weight: 400; font-size: 21px; margin: 0 0 10px">Teacher training</h3>
+          <p style="font-size: 14.5px; line-height: 1.65; color: #5c6f5c; margin: 0">The town's main export. 200hr and 300hr courses, mostly residential, concentrated in Tapovan and Upper Swarg Ashram. Check accreditation and how many hours are actually taught, not advertised.</p>
+        </div>
+        <div style="border: 1px solid #e4ece4; border-radius: 16px; padding: 22px">
+          <h3 style="font-family: Petrona, serif; font-weight: 400; font-size: 21px; margin: 0 0 10px">Ashram stays</h3>
+          <p style="font-size: 14.5px; line-height: 1.65; color: #5c6f5c; margin: 0">Traditional residential practice with a fixed daily schedule, shared rooms and a 5am start. Parmarth Niketan and the Sivananda ashram take long-stay students; several accept walk-ins.</p>
+        </div>
+        <div style="border: 1px solid #e4ece4; border-radius: 16px; padding: 22px">
+          <h3 style="font-family: Petrona, serif; font-weight: 400; font-size: 21px; margin: 0 0 10px">Drop-in classes</h3>
+          <p style="font-size: 14.5px; line-height: 1.65; color: #5c6f5c; margin: 0">Hatha, Ashtanga and Iyengar all over the east bank, often on rooftops, usually 200–500 rupees. Quality varies by teacher rather than by venue — ask who is teaching, not where.</p>
+        </div>
+        <div style="border: 1px solid #e4ece4; border-radius: 16px; padding: 22px">
+          <h3 style="font-family: Petrona, serif; font-weight: 400; font-size: 21px; margin: 0 0 10px">Silent &amp; meditation retreats</h3>
+          <p style="font-size: 14.5px; line-height: 1.65; color: #5c6f5c; margin: 0">Vipassana courses, silent sits and shorter three-day retreats, mostly on the quieter hillsides above the town rather than in the centre.</p>
+        </div>
+        <div style="border: 1px solid #e4ece4; border-radius: 16px; padding: 22px">
+          <h3 style="font-family: Petrona, serif; font-weight: 400; font-size: 21px; margin: 0 0 10px">Ayurveda &amp; panchakarma</h3>
+          <p style="font-size: 14.5px; line-height: 1.65; color: #5c6f5c; margin: 0">Consultations, massage and full panchakarma programmes of one to three weeks. Look for a BAMS-qualified practitioner; the title is a real degree and easy to check.</p>
+        </div>
+        <div style="border: 1px solid #e4ece4; border-radius: 16px; padding: 22px">
+          <h3 style="font-family: Petrona, serif; font-weight: 400; font-size: 21px; margin: 0 0 10px">Ganga Aarti</h3>
+          <p style="font-size: 14.5px; line-height: 1.65; color: #5c6f5c; margin: 0">The evening fire ceremony at Triveni Ghat and Parmarth Niketan. Free, daily at sunset, and the one thing worth doing on your first evening.</p>
+        </div>
+        <div style="border: 1px solid #e4ece4; border-radius: 16px; padding: 22px">
+          <h3 style="font-family: Petrona, serif; font-weight: 400; font-size: 21px; margin: 0 0 10px">Sound, kirtan &amp; philosophy</h3>
+          <p style="font-size: 14.5px; line-height: 1.65; color: #5c6f5c; margin: 0">Sanskrit and sutra study, chanting groups and kirtan most evenings. The philosophy courses are the most under-attended and often the best value in town.</p>
+        </div>
+        <div style="border: 1px solid #e4ece4; border-radius: 16px; padding: 22px">
+          <h3 style="font-family: Petrona, serif; font-weight: 400; font-size: 21px; margin: 0 0 10px">The river, and walking</h3>
+          <p style="font-size: 14.5px; line-height: 1.65; color: #5c6f5c; margin: 0">Rafting from September to June, beaches upstream, and the walk up to Neelkanth Mahadev — traditionally done on foot, and still the best day out of town.</p>
+        </div>
+      </div>
+
+      <div style="background: #ff6540; border-radius: 18px; padding: clamp(24px, 3.4vw, 40px); margin-top: clamp(32px, 4vw, 52px); display: flex; flex-wrap: wrap; gap: 24px; align-items: center; justify-content: space-between">
+        <div style="flex: 1 1 320px">
+          <h2 style="font-family: Petrona, serif; font-weight: 300; font-size: clamp(24px, 3vw, 34px); margin: 0; color: #1b391c; letter-spacing: -0.015em">Choosing a Rishikesh training?</h2>
+          <p style="font-size: 15.5px; line-height: 1.7; color: #4a1f14; margin: 12px 0 0; max-width: 52ch">Read the piece on telling a good teacher from a popular one before you pay a deposit. The same test applies to schools.</p>
+        </div>
+        <span onClick="{{ goDirectory }}" style="background: #1b391c; color: #ffffff; padding: 16px 30px; border-radius: 999px; font-size: 12px; letter-spacing: 0.18em; cursor: pointer; white-space: nowrap" style-hover="background: #ffffff; color: #1b391c">BROWSE TRAININGS</span>
+      </div>
+    </div>
+  </div>
+  </sc-if>
+
+  <footer style="background: #1b391c; color: #d9e8d9; padding: clamp(36px, 5vw, 64px) clamp(16px, 4vw, 40px) 32px">
+    <div style="max-width: 1240px; margin: 0 auto; display: flex; flex-wrap: wrap; gap: 36px; justify-content: space-between">
+      <div style="flex: 1 1 260px">
+        <img src="assets/logo-full-white.png" alt="The Yoga Universe" style="width: 150px; display: block; margin-bottom: 18px" />
+        <p style="font-size: 14.5px; line-height: 1.7; margin: 0; max-width: 40ch; color: #a2d1a2">The Yoga Universe is an independent index of teachers, studios, retreats and breathwork.</p>
+      </div>
+      <div style="flex: 0 1 170px">
+        <p style="font-size: 10.5px; letter-spacing: 0.2em; color: #a2d1a2; margin: 0 0 16px">INDEX</p>
+        <div style="display: flex; flex-direction: column; gap: 11px">
+          <sc-for list="{{ kindTabs }}" as="k" hint-placeholder-count="5">
+            <span onClick="{{ k.go }}" style="font-size: 14.5px; color: #ffffff; cursor: pointer" style-hover="color: #fbac49">{{ k.name }}</span>
+          </sc-for>
+        </div>
+      </div>
+      <div style="flex: 0 1 160px">
+        <p style="font-size: 10.5px; letter-spacing: 0.2em; color: #a2d1a2; margin: 0 0 16px">MORE</p>
+        <div style="display: flex; flex-direction: column; gap: 11px">
+          <span onClick="{{ goBlog }}" style="font-size: 14.5px; color: #ffffff; cursor: pointer" style-hover="color: #fbac49">Blog</span>
+          <span onClick="{{ goSutras }}" style="font-size: 14.5px; color: #ffffff; cursor: pointer" style-hover="color: #fbac49">The Yoga Sutras</span>
+          <span onClick="{{ goRishikesh }}" style="font-size: 14.5px; color: #ffffff; cursor: pointer" style-hover="color: #fbac49">Rishikesh</span>
+          <span onClick="{{ goManage }}" style="font-size: 14.5px; color: #ffffff; cursor: pointer" style-hover="color: #fbac49">For teachers</span>
+          <span style="font-size: 14.5px; color: #ffffff; cursor: pointer" style-hover="color: #fbac49">Contact</span>
+        </div>
+      </div>
+    </div>
+    <div style="max-width: 1240px; margin: 40px auto 0; border-top: 1px solid rgba(162,209,162,0.25); padding-top: 20px; display: flex; flex-wrap: wrap; gap: 12px; justify-content: space-between">
+      <span style="font-size: 12px; color: #7fa07f">© 2026 The Yoga Universe</span>
+      <span style="font-size: 12px; color: #7fa07f">Privacy · Terms</span>
+    </div>
+  </footer>
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;: {&quot;width&quot;: 1280, &quot;height&quot;: 900}}">
+const TINTS = [
+  ["#a2d1a2", "#1b391c"], ["#ff6540", "#ffffff"], ["#fbac49", "#1b391c"],
+  ["#157a3d", "#ffffff"], ["#1b391c", "#a2d1a2"], ["#f0d9cf", "#1b391c"]
+];
+
+const LISTINGS = [
+  { id: "maya", kind: "Teacher", name: "Maya Raghunathan", city: "Bengaluru", country: "India", styles: ["Ashtanga", "Pranayama"], format: "both", levels: ["Intermediate", "Advanced"], years: 14, reviewCount: 128, featured: true,
+    tagline: "Traditional Mysore-style self practice, six mornings a week, taught one breath at a time.",
+    philosophy: "The posture is not the practice. The practice is what you do on the morning you least want to unroll the mat.",
+    bio: "Maya learned in Mysore over eleven years and now runs a small Mysore room in Indiranagar with no music, no mirrors and a strict 5.30am start. She teaches by hands-on adjustment and by name — the room caps at eighteen so she can watch every breath.",
+    address: "Third floor, 12th Main, Indiranagar, Bengaluru 560038",
+    facts: [ { label: "Levels", value: "Intermediate, Advanced" }, { label: "Languages", value: "English, Kannada, Tamil" }, { label: "Trained", value: "E-RYT 500" }, { label: "Lineage", value: "Mysore / KPJAYI" } ],
+    schedule: [ { day: "MON–FRI", time: "05:30–08:30", what: "Mysore self practice", where: "Indiranagar shala" }, { day: "SATURDAY", time: "07:00–08:30", what: "Led primary series", where: "Indiranagar shala" }, { day: "SUNDAY", time: "18:00–19:00", what: "Pranayama & seated practice", where: "Online" } ],
+    socials: ["INSTAGRAM", "YOUTUBE", "WEBSITE"],
+    reviews: [ { text: "Six months in her Mysore room undid ten years of bad shoulder habits. She corrects almost nothing verbally — she just puts you where you should be.", author: "Arjun T.", when: "2 months ago" }, { text: "Strict, warm, completely unimpressed by how bendy you are. Exactly what I needed.", author: "Freya L.", when: "5 months ago" } ] },
+
+  { id: "daniel", kind: "Teacher", name: "Daniel Okonjo", city: "London", country: "UK", styles: ["Vinyasa", "Yin"], format: "in-person", levels: ["Beginner", "Intermediate"], years: 8, reviewCount: 94, featured: true,
+    tagline: "Slow, musical vinyasa in Hackney — long holds, terrible jokes, no handstand pressure.",
+    philosophy: "I would rather you left the room curious than exhausted. Curiosity brings you back on Thursday.",
+    bio: "Daniel came to yoga late, after a decade of running and a bad knee. He builds classes around one idea a week and returns to it from four directions, so beginners are never guessing what the point was.",
+    address: "The Mill Studio, Chatsworth Road, London E5",
+    facts: [ { label: "Levels", value: "Beginner, Intermediate" }, { label: "Languages", value: "English" }, { label: "Trained", value: "RYT 300" }, { label: "Lineage", value: "Jivamukti-influenced" } ],
+    schedule: [ { day: "TUESDAY", time: "19:00–20:15", what: "Slow flow, all levels", where: "The Mill Studio" }, { day: "THURSDAY", time: "07:15–08:00", what: "Express morning flow", where: "The Mill Studio" }, { day: "SUNDAY", time: "17:00–18:30", what: "Yin & long holds", where: "The Mill Studio" } ],
+    socials: ["INSTAGRAM", "SUBSTACK"],
+    reviews: [ { text: "First teacher who made me feel like a beginner body was welcome rather than tolerated.", author: "Priya S.", when: "3 weeks ago" }, { text: "Wonderful Sunday yin. The Tuesday class fills up fast, book early.", author: "Tom H.", when: "2 months ago" } ] },
+
+  { id: "sofia", kind: "Teacher", name: "Sofia Marchetti", city: "Lisbon", country: "Portugal", styles: ["Iyengar", "Restorative"], format: "in-person", levels: ["Beginner", "Intermediate", "Advanced"], years: 21, reviewCount: 61, featured: true,
+    tagline: "Props, precision and patience. Twenty-one years of teaching people with injuries how to stand up straight.",
+    philosophy: "Alignment is not aesthetics. It is the difference between a practice that lasts three years and one that lasts thirty.",
+    bio: "Sofia trained in Pune and has spent two decades working with students recovering from back surgery, hip replacements and long illness. Her classes move slowly and her props cupboard is legendary.",
+    address: "Rua da Boavista 42, Lisbon 1200-069",
+    facts: [ { label: "Levels", value: "All levels" }, { label: "Languages", value: "Portuguese, Italian, English" }, { label: "Trained", value: "Iyengar Level 3" }, { label: "Lineage", value: "Iyengar, Pune-certified" } ],
+    schedule: [ { day: "MONDAY", time: "10:00–11:30", what: "Iyengar fundamentals", where: "Boavista studio" }, { day: "WEDNESDAY", time: "18:30–20:00", what: "Backs & shoulders", where: "Boavista studio" }, { day: "FRIDAY", time: "10:00–11:15", what: "Restorative", where: "Boavista studio" } ],
+    socials: ["WEBSITE", "EMAIL"],
+    reviews: [ { text: "I came after a discectomy, terrified. Two years later I garden again. That is the whole review.", author: "Helena R.", when: "1 month ago" }, { text: "The most technically precise teaching I have found in Europe.", author: "Marc D.", when: "4 months ago" } ] },
+
+  { id: "ananya", kind: "Teacher", name: "Ananya Bose", city: "Online", country: "—", styles: ["Prenatal", "Hatha"], format: "online", levels: ["Beginner"], years: 11, reviewCount: 212, featured: true,
+    tagline: "Prenatal and postnatal practice, live online across four timezones, with a recording every time.",
+    philosophy: "A pregnant body is not a broken body. It is a body doing the single most demanding thing it will ever do.",
+    bio: "Ananya has taught prenatal yoga since 2015 and works closely with two midwifery practices. Every live class is recorded and stays available, because nobody in their third trimester should have to make a 7am start.",
+    address: "Online — Zoom links sent on booking",
+    facts: [ { label: "Levels", value: "Beginner friendly" }, { label: "Languages", value: "English, Bengali, Hindi" }, { label: "Trained", value: "RPYT, RYT 500" }, { label: "Lineage", value: "Sivananda-influenced" } ],
+    schedule: [ { day: "MONDAY", time: "12:00 GMT", what: "Prenatal, all trimesters", where: "Online" }, { day: "WEDNESDAY", time: "19:30 GMT", what: "Postnatal & core repair", where: "Online" }, { day: "SATURDAY", time: "09:00 GMT", what: "Gentle hatha, open to all", where: "Online" } ],
+    socials: ["INSTAGRAM", "YOUTUBE", "WEBSITE"],
+    reviews: [ { text: "Did every week of my pregnancy with her and then straight into the postnatal series. She explains the why behind every modification.", author: "Nadia K.", when: "6 weeks ago" }, { text: "The recordings saved me. I practised at 4am more than once.", author: "Emma C.", when: "3 months ago" } ] },
+
+  { id: "koji", kind: "Teacher", name: "Koji Yamada", city: "Brooklyn", country: "USA", styles: ["Ashtanga", "Vinyasa"], format: "both", levels: ["Intermediate", "Advanced"], years: 16, reviewCount: 143,
+    tagline: "Hard, quiet, unfashionable Ashtanga in Greenpoint. Arrive early, leave without a photograph.",
+    philosophy: "Discipline is a kindness you do for your future self. Nothing about it needs to be joyless.",
+    bio: "Koji has practised the same sequence every morning for sixteen years and teaches it the way it was taught to him: by counting, by adjusting, and by refusing to add anything decorative.",
+    address: "Norman Avenue, Greenpoint, Brooklyn NY 11222",
+    facts: [ { label: "Levels", value: "Intermediate, Advanced" }, { label: "Languages", value: "English, Japanese" }, { label: "Trained", value: "Authorised Level 2" }, { label: "Lineage", value: "Ashtanga, second series" } ],
+    schedule: [ { day: "MON–THU", time: "06:00–09:00", what: "Mysore self practice", where: "Greenpoint shala" }, { day: "FRIDAY", time: "06:30–08:00", what: "Led primary", where: "Greenpoint shala" }, { day: "SATURDAY", time: "10:00–11:15", what: "Vinyasa for Ashtangis", where: "Online" } ],
+    socials: ["INSTAGRAM", "WEBSITE"],
+    reviews: [ { text: "Zero nonsense. He remembered my name and my tight left hip after one visit.", author: "Rachel B.", when: "1 month ago" }, { text: "Genuinely difficult. Come with some mileage already.", author: "Devon P.", when: "2 months ago" } ] },
+
+  { id: "elena", kind: "Teacher", name: "Elena Petrova", city: "Berlin", country: "Germany", styles: ["Restorative", "Yin", "Meditation"], format: "both", levels: ["Beginner"], years: 12, reviewCount: 118,
+    tagline: "Trauma-informed restorative practice — invitational language, no hands-on, doors stay unlocked.",
+    philosophy: "Choice is the technique. Every instruction I give is an offer you are free to decline, and that is the point.",
+    bio: "Elena trained in trauma-sensitive yoga and works with two Berlin support organisations alongside her public classes. Nothing in her room is mandatory, including keeping your eyes closed.",
+    address: "Reuterstraße, Neukölln, Berlin 12047",
+    facts: [ { label: "Levels", value: "Beginner friendly" }, { label: "Languages", value: "German, Russian, English" }, { label: "Trained", value: "RYT 500, TCTSY" }, { label: "Lineage", value: "Trauma-informed restorative" } ],
+    schedule: [ { day: "MONDAY", time: "20:00–21:15", what: "Restorative", where: "Neukölln studio" }, { day: "THURSDAY", time: "20:00–21:00", what: "Yin, online", where: "Online" }, { day: "SATURDAY", time: "11:00–12:30", what: "Trauma-informed practice", where: "Neukölln studio" } ],
+    socials: ["WEBSITE", "INSTAGRAM"],
+    reviews: [ { text: "The first yoga class I have been able to stay in the room for. She means it when she says everything is optional.", author: "Jo K.", when: "1 month ago" }, { text: "Extraordinary care in how she speaks to a room.", author: "Miriam S.", when: "4 months ago" } ] },
+
+  { id: "ravi", kind: "Teacher", name: "Ravi Deshmukh", city: "Pune", country: "India", styles: ["Hatha", "Pranayama", "Meditation"], format: "both", levels: ["Beginner", "Intermediate", "Advanced"], years: 27, reviewCount: 89,
+    tagline: "Classical hatha and philosophy study, taught the long way round, over years rather than weekends.",
+    philosophy: "Asana is one of eight limbs. If you have spent ten years on one limb, you have not been doing yoga. You have been stretching.",
+    bio: "Ravi teaches a small classical hatha group and a weekly Sanskrit and sutra study open to anyone who turns up twice. Terms run in six-month blocks.",
+    address: "Kothrud, Pune 411038",
+    facts: [ { label: "Levels", value: "All levels" }, { label: "Languages", value: "Marathi, Hindi, English" }, { label: "Trained", value: "Yoga Acharya" }, { label: "Lineage", value: "Classical hatha" } ],
+    schedule: [ { day: "MON, WED, FRI", time: "06:00–07:30", what: "Classical hatha", where: "Kothrud" }, { day: "SATURDAY", time: "18:00–19:30", what: "Sutra study", where: "Online" } ],
+    socials: ["WEBSITE", "EMAIL"],
+    reviews: [ { text: "The sutra study changed how I think about the whole practice. He asks more questions than he answers.", author: "Meera J.", when: "1 month ago" }, { text: "Old school in the best sense.", author: "Chris W.", when: "7 months ago" } ] },
+
+  { id: "tomas", kind: "Teacher", name: "Tomás Ferreira", city: "Online", country: "—", styles: ["Vinyasa", "Hatha"], format: "online", levels: ["Beginner", "Intermediate"], years: 7, reviewCount: 164,
+    tagline: "Short, well-made online classes for people with thirty minutes and a hallway.",
+    philosophy: "Twenty honest minutes beats an ambitious ninety you never actually do.",
+    bio: "Tomás builds every class to fit a small space and a tight schedule, with a clear plan announced at the start so you know exactly what you have signed up for.",
+    address: "Online — live and on demand",
+    facts: [ { label: "Levels", value: "Beginner, Intermediate" }, { label: "Languages", value: "Portuguese, Spanish, English" }, { label: "Trained", value: "RYT 200" }, { label: "Lineage", value: "Contemporary vinyasa" } ],
+    schedule: [ { day: "TUE & THU", time: "07:00 CET", what: "30-minute morning flow", where: "Online" }, { day: "SATURDAY", time: "10:00 CET", what: "60-minute full practice", where: "Online" } ],
+    socials: ["YOUTUBE", "INSTAGRAM"],
+    reviews: [ { text: "Consistent, unfussy, and the only teacher whose classes I have actually kept up for a year.", author: "Lucia G.", when: "2 months ago" }, { text: "Wish there were more advanced options, but the fundamentals are excellent.", author: "Ben O.", when: "3 months ago" } ] },
+
+  { id: "harriet", kind: "Teacher", name: "Harriet Cole", city: "Bristol", country: "UK", styles: ["Vinyasa", "Prenatal"], format: "in-person", levels: ["Beginner", "Intermediate"], years: 10, reviewCount: 88,
+    tagline: "Strong, sweaty flows and a very good Wednesday prenatal class, both in the same church hall.",
+    philosophy: "Strength and softness are not opposites. Most people arrive over-committed to one of them.",
+    bio: "Harriet has taught in Bristol for a decade and runs a teacher mentoring circle. Her general classes are physically demanding; her prenatal classes are anything but.",
+    address: "St Michael's Hall, Montpelier, Bristol BS6",
+    facts: [ { label: "Levels", value: "Beginner, Intermediate" }, { label: "Languages", value: "English" }, { label: "Trained", value: "RYT 500, RPYT" }, { label: "Lineage", value: "Vinyasa, Forrest-influenced" } ],
+    schedule: [ { day: "MONDAY", time: "18:30–19:45", what: "Strong vinyasa", where: "St Michael's Hall" }, { day: "WEDNESDAY", time: "11:00–12:00", what: "Prenatal", where: "St Michael's Hall" }, { day: "SATURDAY", time: "09:30–11:00", what: "Long flow & workshop", where: "St Michael's Hall" } ],
+    socials: ["INSTAGRAM", "WEBSITE"],
+    reviews: [ { text: "Monday class is the hardest hour of my week and I would not skip it.", author: "Owen D.", when: "3 weeks ago" }, { text: "Hall is a bit cold in January. Harriet is not.", author: "Sam L.", when: "6 months ago" } ] },
+
+  { id: "millpond", kind: "Studio", name: "Millpond Yoga", city: "London", country: "UK", styles: ["Vinyasa", "Yin", "Iyengar", "Prenatal"], format: "both", levels: ["Beginner", "Intermediate", "Advanced"], years: 12, reviewCount: 340,
+    tagline: "Two rooms, fourteen teachers and a timetable that runs from 6.30am to 9pm, seven days a week.",
+    philosophy: "A studio should be the least interesting thing in the room. We hire well and then get out of the way.",
+    bio: "Millpond opened in a converted print works in 2014 and now runs around sixty classes a week across two rooms, plus a livestream of the evening slot. Mats, blocks and tea are free; the changing rooms have actual lockers.",
+    address: "Unit 4, Chatsworth Road, London E5 0LH",
+    facts: [ { label: "Founded", value: "2014" }, { label: "Rooms", value: "2 (28 and 16 mats)" }, { label: "Teachers", value: "14 on the timetable" }, { label: "Drop-in", value: "Welcome, no membership" } ],
+    schedule: [ { day: "MON–FRI", time: "06:30–21:00", what: "Full timetable, 10–12 classes daily", where: "Both rooms" }, { day: "SATURDAY", time: "08:00–17:00", what: "Weekend flows & workshops", where: "Main room" }, { day: "SUNDAY", time: "09:00–19:00", what: "Restorative, yin and family classes", where: "Both rooms" }, { day: "DAILY", time: "18:30", what: "Evening class livestreamed", where: "Online" } ],
+    socials: ["WEBSITE", "INSTAGRAM", "TIMETABLE"],
+    reviews: [ { text: "The only studio I have joined where the beginner class is taught by the most senior teacher rather than the newest one.", author: "Ruth A.", when: "2 weeks ago" }, { text: "Busy at 6pm — go earlier or livestream. Otherwise faultless.", author: "Deniz K.", when: "3 months ago" } ] },
+
+  { id: "anahata", kind: "Studio", name: "Anahata Shala", city: "Bengaluru", country: "India", styles: ["Ashtanga", "Hatha", "Pranayama", "Ayurveda"], format: "in-person", levels: ["Intermediate", "Advanced"], years: 19, reviewCount: 176,
+    tagline: "A traditional shala with a Mysore room, a philosophy library and an Ayurvedic clinic upstairs.",
+    philosophy: "We teach in terms rather than drop-ins because the practice is cumulative and so is the teaching.",
+    bio: "Anahata has run continuously since 2007. The morning Mysore room seats forty, the afternoon is given over to teacher training, and the upstairs clinic runs Ayurvedic consultations twice a week.",
+    address: "5th Cross, Malleshwaram, Bengaluru 560003",
+    facts: [ { label: "Founded", value: "2007" }, { label: "Format", value: "Six-month terms" }, { label: "Teachers", value: "6 resident" }, { label: "Also here", value: "Ayurvedic clinic" } ],
+    schedule: [ { day: "MON–SAT", time: "05:00–09:00", what: "Mysore room", where: "Main hall" }, { day: "MON–FRI", time: "17:00–18:30", what: "Led hatha & pranayama", where: "Upper hall" }, { day: "SUNDAY", time: "09:00–11:00", what: "Philosophy & chanting", where: "Library" } ],
+    socials: ["WEBSITE", "EMAIL"],
+    reviews: [ { text: "Feels like a school rather than a gym. That is either exactly what you want or exactly what you do not.", author: "Kavya R.", when: "1 month ago" }, { text: "The library alone is worth the term fee.", author: "Ian F.", when: "5 months ago" } ] },
+
+  { id: "salt", kind: "Studio", name: "Salt Room Yoga", city: "Cape Town", country: "South Africa", styles: ["Vinyasa", "Yin", "Breathwork"], format: "both", levels: ["Beginner", "Intermediate"], years: 5, reviewCount: 128,
+    tagline: "A small sea-facing room in Muizenberg with sunrise flows, evening yin and a Thursday breathwork circle.",
+    philosophy: "Every class here is donation-based on Fridays. Nobody has ever abused that and we are not going to stop.",
+    bio: "Salt Room seats twenty-two, faces the water and opens its doors when the wind allows. Five teachers share a timetable that deliberately leaves the middle of the day empty.",
+    address: "Beach Road, Muizenberg, Cape Town 7945",
+    facts: [ { label: "Founded", value: "2021" }, { label: "Capacity", value: "22 mats" }, { label: "Teachers", value: "5" }, { label: "Fridays", value: "Donation-based" } ],
+    schedule: [ { day: "MON–FRI", time: "06:15–07:30", what: "Sunrise flow", where: "Main room" }, { day: "MON–THU", time: "17:30–19:00", what: "Evening flow & yin", where: "Main room" }, { day: "THURSDAY", time: "19:30–21:00", what: "Breathwork circle", where: "Main room" }, { day: "FRIDAY", time: "06:15", what: "Donation-based flow", where: "Main room" } ],
+    socials: ["INSTAGRAM", "WEBSITE"],
+    reviews: [ { text: "Sunrise over False Bay through the doors. Hard to review objectively.", author: "Sipho N.", when: "2 weeks ago" }, { text: "Small, friendly, occasionally windy. Book the 6.15.", author: "Anna V.", when: "3 months ago" } ] },
+
+  { id: "silence", kind: "Retreat", name: "Ten Days of Silence", city: "Rishikesh", country: "India", styles: ["Meditation", "Silent retreat", "Pranayama"], format: "in-person", levels: ["Intermediate", "Advanced"], years: 9, reviewCount: 84,
+    tagline: "A genuinely silent ten-day sit above the Ganges. No phones, no reading, no eye contact, no exceptions.",
+    philosophy: "We do not make the retreat comfortable, because comfort is the thing you came here to stop chasing.",
+    bio: "Run twice a year by two teachers who have between them sat over forty long retreats. Twenty places, simple shared rooms, three vegetarian meals, and a daily schedule that starts at 4am. Applications close eight weeks before.",
+    address: "Tapovan, Rishikesh, Uttarakhand 249192",
+    facts: [ { label: "Length", value: "10 nights" }, { label: "Group size", value: "20 places" }, { label: "Includes", value: "Room, all meals, teaching" }, { label: "Suits", value: "Established practitioners" } ],
+    schedule: [ { day: "2–12 SEP", time: "10 nights", what: "Autumn silent retreat", where: "Rishikesh" }, { day: "4–14 FEB", time: "10 nights", what: "Winter silent retreat", where: "Rishikesh" }, { day: "DAILY", time: "04:00–21:00", what: "Sitting, walking, one hour of instruction", where: "On site" } ],
+    socials: ["WEBSITE", "EMAIL"],
+    reviews: [ { text: "Days four and five were the hardest thing I have done. Day nine is why people come back.", author: "Peter M.", when: "4 months ago" }, { text: "Do not book this as your first retreat. Do book it eventually.", author: "Saskia B.", when: "8 months ago" } ] },
+
+  { id: "algarve", kind: "Retreat", name: "Slow Week Algarve", city: "Faro", country: "Portugal", styles: ["Vinyasa", "Yin", "Restorative"], format: "in-person", levels: ["Beginner", "Intermediate"], years: 6, reviewCount: 152,
+    tagline: "Seven days, two classes a day, a swimming pool and absolutely no schedule between eleven and five.",
+    philosophy: "The point of a retreat week is the gap in the middle of the day. We protect it fiercely.",
+    bio: "A restored farmhouse an hour inland from Faro, running eight retreat weeks a year for a maximum of sixteen guests. Morning vinyasa, evening yin, long lunches and a cook who does not believe in small portions.",
+    address: "Quinta do Vale, near Loulé, Faro district",
+    facts: [ { label: "Length", value: "7 nights" }, { label: "Group size", value: "16 max" }, { label: "Includes", value: "Room, meals, two classes daily" }, { label: "Suits", value: "All levels, first retreats" } ],
+    schedule: [ { day: "APRIL", time: "3 weeks", what: "Spring retreats", where: "Quinta do Vale" }, { day: "JUN–JUL", time: "3 weeks", what: "Summer retreats", where: "Quinta do Vale" }, { day: "OCTOBER", time: "2 weeks", what: "Autumn retreats", where: "Quinta do Vale" }, { day: "DAILY", time: "08:00 & 18:00", what: "Vinyasa and yin", where: "Open-air shala" } ],
+    socials: ["WEBSITE", "INSTAGRAM"],
+    reviews: [ { text: "The unstructured afternoons are the whole design. I slept nine hours a night for a week.", author: "Claire T.", when: "1 month ago" }, { text: "Excellent for a first retreat. Nobody is competitive, the food is absurd.", author: "Marco P.", when: "6 months ago" } ] },
+
+  { id: "highland", kind: "Retreat", name: "Highland Winter Sit", city: "Inverness", country: "UK", styles: ["Meditation", "Breathwork", "Restorative"], format: "in-person", levels: ["Beginner", "Intermediate"], years: 4, reviewCount: 47,
+    tagline: "A four-night midwinter retreat in a Highland bothy: cold walks, long sits, wood smoke and early nights.",
+    philosophy: "Winter is not a problem to be solved. Four days of going along with it changes the rest of the season.",
+    bio: "Small and deliberately austere — twelve people, one fire, no wifi. Two facilitators lead morning breathwork, an afternoon walk in silence and an evening sit.",
+    address: "Glen Affric, near Inverness IV4",
+    facts: [ { label: "Length", value: "4 nights" }, { label: "Group size", value: "12 places" }, { label: "Includes", value: "Bunk, all meals, teaching" }, { label: "Bring", value: "Serious waterproofs" } ],
+    schedule: [ { day: "5–9 DEC", time: "4 nights", what: "Early winter sit", where: "Glen Affric" }, { day: "16–20 JAN", time: "4 nights", what: "Deep winter sit", where: "Glen Affric" }, { day: "DAILY", time: "07:00 / 14:00 / 19:00", what: "Breathwork, silent walk, evening sit", where: "On site" } ],
+    socials: ["WEBSITE", "EMAIL"],
+    reviews: [ { text: "Freezing, beautiful, and the best four days of sleep I have had in years.", author: "Fiona G.", when: "5 months ago" }, { text: "Genuinely no wifi. Plan for that with work.", author: "Alec S.", when: "7 months ago" } ] },
+
+  { id: "leila", kind: "Breathwork", name: "Leila Haddad", city: "Marseille", country: "France", styles: ["Breathwork", "Kundalini", "Meditation"], format: "both", levels: ["Beginner", "Intermediate"], years: 9, reviewCount: 77,
+    tagline: "Kriya, pranayama and long meditations for people who cannot sit still — she was one of them.",
+    philosophy: "You do not calm the mind by asking it politely. You give it something rhythmic and difficult to do.",
+    bio: "Leila teaches kriya and pranayama with an unusually practical bent, and runs a free Sunday sitting group in the Panier. She works often with people managing anxiety and shift work.",
+    address: "Le Panier, Marseille 13002",
+    facts: [ { label: "Method", value: "Kriya & pranayama" }, { label: "Levels", value: "Beginner, Intermediate" }, { label: "Languages", value: "French, Arabic, English" }, { label: "Trained", value: "KRI Level 2" } ],
+    schedule: [ { day: "TUESDAY", time: "18:00–19:30", what: "Kundalini kriya", where: "Panier studio" }, { day: "THURSDAY", time: "07:00–07:45", what: "Morning breathwork", where: "Online" }, { day: "SUNDAY", time: "09:00–10:00", what: "Sitting group (free)", where: "Panier studio" } ],
+    socials: ["INSTAGRAM", "WEBSITE"],
+    reviews: [ { text: "The Thursday breathwork replaced my morning coffee, which I did not expect to type.", author: "Camille F.", when: "3 weeks ago" }, { text: "Intense first few sessions. Stick with it.", author: "Yanis M.", when: "5 months ago" } ] },
+
+  { id: "yusuf", kind: "Breathwork", name: "Yusuf Karim", city: "Dubai", country: "UAE", styles: ["Breathwork", "Hatha", "Meditation"], format: "both", levels: ["Beginner", "Intermediate"], years: 13, reviewCount: 71,
+    tagline: "Evening breath and nervous-system work for desk-bound bodies, finishing with a long guided sit.",
+    philosophy: "Most of my students sit for nine hours a day. The practice has to answer that, or it is decoration.",
+    bio: "Yusuf built his teaching around the specific damage of office work — jaw, thoracic spine, shallow breathing — and finishes every session with fifteen minutes of guided sitting.",
+    address: "Al Quoz 1, Dubai",
+    facts: [ { label: "Method", value: "Slow breathing & CO₂ tolerance" }, { label: "Levels", value: "Beginner, Intermediate" }, { label: "Languages", value: "Arabic, English, Urdu" }, { label: "Trained", value: "RYT 500" } ],
+    schedule: [ { day: "SUN & TUE", time: "19:30–20:45", what: "Breath for desk bodies", where: "Al Quoz studio" }, { day: "THURSDAY", time: "20:00–21:00", what: "Breathwork & meditation", where: "Online" } ],
+    socials: ["INSTAGRAM", "WEBSITE"],
+    reviews: [ { text: "My neck stopped clicking after two months. I have no other explanation.", author: "Farah A.", when: "1 month ago" }, { text: "Lovely closing meditations, sometimes runs over.", author: "Nick R.", when: "4 months ago" } ] },
+
+  { id: "conor", kind: "Breathwork", name: "Conor Walsh", city: "Online", country: "—", styles: ["Breathwork"], format: "online", levels: ["Beginner"], years: 5, reviewCount: 196,
+    tagline: "Live conscious-connected breathwork sessions online, with a facilitator on the call throughout.",
+    philosophy: "Big breathwork can bring things up. Doing it alone from a video is not the same as doing it with someone watching.",
+    bio: "Conor runs small live sessions capped at twelve so he can see every face, plus a gentler weekly downregulation class for people who found the deep work too much the first time.",
+    address: "Online — live sessions only, no recordings",
+    facts: [ { label: "Method", value: "Conscious connected breathing" }, { label: "Group size", value: "12 max" }, { label: "Languages", value: "English" }, { label: "Note", value: "Screening call before first session" } ],
+    schedule: [ { day: "WEDNESDAY", time: "19:00 GMT", what: "Deep breathwork session", where: "Online" }, { day: "SUNDAY", time: "18:00 GMT", what: "Gentle downregulation", where: "Online" } ],
+    socials: ["WEBSITE", "INSTAGRAM"],
+    reviews: [ { text: "The screening call told me he takes this seriously. So does the session.", author: "Hannah W.", when: "1 month ago" }, { text: "Not a soundtrack-and-vibes class. Come prepared to actually feel something.", author: "Raj P.", when: "3 months ago" } ] },
+
+  { id: "ytt-anahata", kind: "Training", name: "Anahata 200hr Foundation", city: "Bengaluru", country: "India", styles: ["Teacher training", "Ashtanga", "Hatha", "Pranayama"], format: "in-person", levels: ["Intermediate", "Advanced"], years: 15, reviewCount: 96,
+    tagline: "A residential 200-hour taught over eight weeks rather than four, with philosophy given equal weight to asana.",
+    philosophy: "Nobody becomes a teacher in a month. We stretch the same syllabus over twice the time and expect you to practise between the modules.",
+    bio: "Run by Anahata Shala's six resident teachers since 2011. Mornings are Mysore practice, afternoons alternate between anatomy, Sanskrit, sutra study and supervised teaching. Sixteen places, shared accommodation on site.",
+    address: "5th Cross, Malleshwaram, Bengaluru 560003",
+    facts: [ { label: "Hours", value: "200hr, 8 weeks residential" }, { label: "Accreditation", value: "Yoga Alliance RYS 200" }, { label: "Places", value: "16 per intake" }, { label: "Entry", value: "2+ years of regular practice" } ],
+    schedule: [ { day: "6 JAN – 1 MAR", time: "8 weeks", what: "Winter intake", where: "Malleshwaram" }, { day: "1 SEP – 26 OCT", time: "8 weeks", what: "Autumn intake", where: "Malleshwaram" }, { day: "APPLICATIONS", time: "Close 10 weeks prior", what: "Interview required", where: "Online" } ],
+    socials: ["WEBSITE", "EMAIL"],
+    reviews: [ { text: "Eight weeks instead of four made all the difference. I actually absorbed the philosophy rather than surviving it.", author: "Nisha D.", when: "3 months ago" }, { text: "Demanding, traditional, and they are honest that not everyone finishes ready to teach.", author: "Lars H.", when: "9 months ago" } ] },
+
+  { id: "ytt-millpond", kind: "Training", name: "Millpond 300hr Advanced", city: "London", country: "UK", styles: ["Teacher training", "Vinyasa", "Yin"], format: "both", levels: ["Advanced"], years: 8, reviewCount: 64,
+    tagline: "A part-time 300-hour for working teachers — one weekend a month for a year, with online theory in between.",
+    philosophy: "This is a training for people already teaching badly-attended Tuesday classes, and wanting to teach them better.",
+    bio: "Twelve monthly weekends at Millpond plus fortnightly online theory. Heavy on sequencing, hands-on assisting, and the unglamorous business of holding a regular class. You must be teaching at least once a week to enrol.",
+    address: "Unit 4, Chatsworth Road, London E5 0LH",
+    facts: [ { label: "Hours", value: "300hr over 12 months" }, { label: "Accreditation", value: "Yoga Alliance RYS 300" }, { label: "Format", value: "Monthly weekends + online" }, { label: "Entry", value: "200hr and currently teaching" } ],
+    schedule: [ { day: "MONTHLY", time: "Sat–Sun, 09:00–17:00", what: "In-person weekend module", where: "Millpond, London" }, { day: "FORTNIGHTLY", time: "Wed 19:00", what: "Theory & case discussion", where: "Online" }, { day: "COHORT", time: "Starts each March", what: "Applications from November", where: "Online" } ],
+    socials: ["WEBSITE", "INSTAGRAM", "EMAIL"],
+    reviews: [ { text: "The assisting module alone rewrote how I teach. Worth it for that weekend.", author: "Georgia N.", when: "2 months ago" }, { text: "Fitting it around a full-time job was hard but the monthly rhythm makes it possible.", author: "Adam R.", when: "7 months ago" } ] },
+
+  { id: "ytt-foundations", kind: "Training", name: "Foundations 200hr Online", city: "Online", country: "—", styles: ["Teacher training", "Hatha", "Vinyasa"], format: "online", levels: ["Beginner", "Intermediate"], years: 4, reviewCount: 231,
+    tagline: "A fully online 200-hour with live teaching practice in small groups — no pre-recorded lecture dumping.",
+    philosophy: "Online training gets a bad name because most of it is video. Ours is ninety per cent live, in groups of six.",
+    bio: "Twenty-four weeks, two live evenings a week plus a Saturday morning, capped at twenty-four students split into practice pods of six. Recordings exist but attendance is expected. Suits people without a good training within travelling distance.",
+    address: "Online — live sessions, three timezone options",
+    facts: [ { label: "Hours", value: "200hr over 24 weeks" }, { label: "Accreditation", value: "Yoga Alliance RYS 200" }, { label: "Format", value: "Live online, pods of 6" }, { label: "Entry", value: "1+ year of regular practice" } ],
+    schedule: [ { day: "TUE & THU", time: "19:00, 3 timezones", what: "Live teaching sessions", where: "Online" }, { day: "SATURDAY", time: "09:00–12:00", what: "Practice pods & feedback", where: "Online" }, { day: "INTAKES", time: "Jan, May, Sep", what: "24 places each", where: "Online" } ],
+    socials: ["WEBSITE", "INSTAGRAM"],
+    reviews: [ { text: "I live four hours from the nearest studio. This was the only realistic option and it turned out to be a good one.", author: "Katrin S.", when: "1 month ago" }, { text: "The pods are the reason it works. You teach to the same five people for six months.", author: "Oli B.", when: "5 months ago" } ] },
+
+  { id: "junko", kind: "Meditation", name: "Junko Nakamura", city: "Kyoto", country: "Japan", styles: ["Zen", "Meditation", "Silent retreat"], format: "both", levels: ["Beginner", "Intermediate", "Advanced"], years: 24, reviewCount: 58,
+    tagline: "Zazen in a temple sub-hall, twice daily, plus a monthly all-day sit open to complete beginners.",
+    philosophy: "There is nothing to attain and nothing to improve. Sit down, face the wall, and let that be disappointing for a while.",
+    bio: "Junko has practised in the Sōtō tradition for twenty-four years and teaches a lay sitting group with no fees and no membership. Beginners are given twenty minutes of posture instruction before their first sit and then left alone.",
+    address: "Sub-hall, Higashiyama-ku, Kyoto 605-0862",
+    facts: [ { label: "Tradition", value: "Sōtō Zen (zazen)" }, { label: "Cost", value: "No fee, donations only" }, { label: "Languages", value: "Japanese, English" }, { label: "Beginners", value: "Instruction before first sit" } ],
+    schedule: [ { day: "MON–SAT", time: "06:00–07:00", what: "Morning zazen", where: "Higashiyama sub-hall" }, { day: "MON–FRI", time: "19:00–20:00", what: "Evening zazen", where: "Higashiyama sub-hall" }, { day: "FIRST SUNDAY", time: "07:00–16:00", what: "All-day sit, beginners welcome", where: "Higashiyama sub-hall" }, { day: "WEDNESDAY", time: "19:00 JST", what: "Online sit", where: "Online" } ],
+    socials: ["WEBSITE", "EMAIL"],
+    reviews: [ { text: "No ceremony, no explanation, no music. After a month of resenting it I understood.", author: "Tomoko I.", when: "2 months ago" }, { text: "She corrected my posture twice in six months and both times it was the right moment.", author: "Will A.", when: "6 months ago" } ] },
+
+  { id: "ruth", kind: "Meditation", name: "Dr Ruth Ellis", city: "Manchester", country: "UK", styles: ["MBSR", "Meditation"], format: "both", levels: ["Beginner"], years: 16, reviewCount: 143,
+    tagline: "The standard eight-week MBSR course, taught properly, with GP referrals accepted.",
+    philosophy: "Mindfulness is a clinical intervention with an evidence base and real contraindications. I teach it that way, not as a lifestyle.",
+    bio: "Ruth is a clinical psychologist who has taught MBSR since 2010 and supervises other teachers. Courses run three times a year, in person in Chorlton and online, with a full-day silent session in week six.",
+    address: "Chorlton, Manchester M21",
+    facts: [ { label: "Course", value: "8 weeks + full silent day" }, { label: "Trained", value: "CFM-qualified, BAMBA listed" }, { label: "Referrals", value: "GP referrals accepted" }, { label: "Group size", value: "14 max" } ],
+    schedule: [ { day: "TUESDAY", time: "18:30–21:00", what: "MBSR weeks 1–8, in person", where: "Chorlton" }, { day: "THURSDAY", time: "10:00–12:30", what: "MBSR weeks 1–8, online", where: "Online" }, { day: "WEEK 6", time: "10:00–16:00", what: "Full day of silent practice", where: "Chorlton" }, { day: "INTAKES", time: "Jan, Apr, Sep", what: "Orientation session first", where: "Both" } ],
+    socials: ["WEBSITE", "EMAIL"],
+    reviews: [ { text: "She was clear at the orientation that this might not be right for me at that point. That honesty is why I came back a year later.", author: "Stephen C.", when: "3 months ago" }, { text: "The silent day is the hinge of the whole course. Do not skip week six.", author: "Amara O.", when: "8 months ago" } ] },
+
+  { id: "priya", kind: "Meditation", name: "Priya Nair", city: "Online", country: "—", styles: ["Yoga nidra", "Mantra", "Meditation"], format: "online", levels: ["Beginner", "Intermediate"], years: 10, reviewCount: 187,
+    tagline: "Yoga nidra and mantra practice, live at 21:00, designed to be done lying in bed with the lights off.",
+    philosophy: "Yoga nidra is not a nap and it is not a sound bath. It is a structured practice, and most people have only ever met a diluted version.",
+    bio: "Priya teaches classical yoga nidra in the Satyananda structure alongside a Sanskrit mantra group. Sessions are live only — she does not release recordings, because people use them as sleep aids and stop practising.",
+    address: "Online — live sessions, GMT and IST",
+    facts: [ { label: "Practices", value: "Yoga nidra, mantra japa" }, { label: "Lineage", value: "Satyananda-derived" }, { label: "Languages", value: "English, Malayalam, Hindi" }, { label: "Recordings", value: "None — live only" } ],
+    schedule: [ { day: "MON & WED", time: "21:00 GMT", what: "Yoga nidra", where: "Online" }, { day: "SUNDAY", time: "07:30 IST", what: "Mantra & japa group", where: "Online" }, { day: "MONTHLY", time: "First Saturday", what: "90-minute extended nidra", where: "Online" } ],
+    socials: ["WEBSITE", "INSTAGRAM"],
+    reviews: [ { text: "I have used nidra apps for years. Twenty minutes with an actual teacher was a completely different practice.", author: "Jenny F.", when: "5 weeks ago" }, { text: "Refusing to give out recordings annoyed me at first. She is right.", author: "Dev M.", when: "4 months ago" } ] }
+];
+
+const VERIFIED = ["maya", "sofia", "ananya", "koji", "elena", "ravi", "harriet", "millpond", "anahata", "salt", "silence", "algarve", "leila", "conor", "ytt-anahata", "ytt-millpond", "ytt-foundations", "junko", "ruth", "priya"];
+
+const START_PATHS = [
+  { name: "I have never done yoga", ids: ["daniel", "tomas"], post: "first", note: "One thing to read first, then two teachers who will not expect you to know the Sanskrit." },
+  { name: "Coming back after injury", ids: ["sofia", "elena"], post: "props", note: "Props, precision, and two teachers used to working around a diagnosis." },
+  { name: "I am pregnant", ids: ["ananya", "harriet"], post: "styles", note: "Specifically sequenced prenatal practice — not a gentler version of a general class." },
+  { name: "I want to sleep better", ids: ["priya", "yusuf"], post: "breath", note: "Downregulating breath and nidra rather than strong flow. Know which kind you are booking." },
+  { name: "I want to sit, not stretch", ids: ["junko", "ruth"], post: "retreat", note: "Meditation taught as its own discipline, from clinical MBSR to traditional zazen." },
+  { name: "I want to teach", ids: ["ytt-anahata", "ytt-foundations"], post: "teacher", note: "What separates a good training from a popular one, and two accredited routes." }
+];
+
+const MONEY = { India: ["₹", 600], UK: ["£", 15], USA: ["$", 24], Portugal: ["€", 12], Germany: ["€", 14], France: ["€", 15], UAE: ["AED ", 90], Japan: ["¥", 2200], "South Africa": ["R", 130], "—": ["£", 10] };
+const BOOKABLE = { Teacher: true, Studio: true, Breathwork: true, Meditation: true };
+
+function hash(str) { let h = 0; for (let i = 0; i < str.length; i++) h = (h * 31 + str.charCodeAt(i)) % 9973; return h; }
+
+function slotsFor(t) {
+  const money = MONEY[t.country] || MONEY["—"];
+  return t.schedule.filter(s => s.day.indexOf("APPLICATIONS") === -1 && s.day.indexOf("INTAKES") === -1 && s.day.indexOf("COHORT") === -1).map((s, i) => {
+    const h = hash(t.id + s.day + s.time);
+    const capacity = 8 + (h % 6) * 4;
+    const free = t.facts.some(f => (f.value || "").toLowerCase().indexOf("donation") !== -1 || (f.value || "").toLowerCase().indexOf("no fee") !== -1);
+    return {
+      id: t.id + "-" + i, day: s.day, time: s.time, what: s.what, where: s.where,
+      capacity: capacity, booked: Math.min(capacity, 2 + (h % capacity)),
+      price: free ? 0 : money[1], symbol: money[0], free: free
+    };
+  });
+}
+
+const POSTS = [
+  { id: "styles", category: "GUIDE", title: "The eleven yoga styles, honestly described", excerpt: "What actually happens in an Ashtanga room versus a yin room, and which one suits the week you are having.", meta: "9 min read · June 2026", tint: "#a2d1a2",
+    body: [ "Every studio timetable assumes you already know the difference between vinyasa and hatha, between yin and restorative, between a led class and a Mysore room. Almost nobody does. Here is the plain version.", "Ashtanga is a fixed sequence, practised in the same order every time. In a Mysore room you do it yourself, from memory, while the teacher moves around the room adjusting people. It is repetitive on purpose: the sequence stops being the thing you are thinking about, and something else becomes available.", "Vinyasa borrows Ashtanga's breath-linked movement but throws out the fixed order. A good vinyasa teacher builds towards something; a poor one simply keeps you moving. Ask what the class is working on. If there is an answer, it is probably a good class.", "Hatha, in the modern timetable sense, usually means slower, held postures with less flowing between them. Classical hatha is a much larger thing — a whole system that includes breath, cleansing practices and meditation, of which posture is a small part.", "Iyengar is precision and props: belts, blocks, chairs, walls. It looks static and is anything but. It is the style most likely to help if you are working around an injury, and the style most likely to tell you your knee is not where you think it is.", "Yin holds passive floor postures for three to five minutes to load connective tissue rather than muscle. Restorative looks similar but has the opposite intention — it props you up so completely that nothing loads at all. Yin is uncomfortable. Restorative should not be.", "Kundalini uses repetitive movement, breath patterns and sound rather than posture shapes. It is the most polarising style on any timetable and the one people most often either abandon in the first ten minutes or practise for thirty years.", "Prenatal is not a gentler version of a general class. It is a differently sequenced practice built around a body whose ligaments, balance and blood volume are all changing month to month. Take the specific class.", "The practical advice: try three teachers of one style before you decide the style is not for you. Teachers vary far more than styles do." ] },
+  { id: "breath", category: "BREATHWORK", title: "Breathwork is not one thing", excerpt: "Slow pranayama and conscious connected breathing do opposite things to your nervous system. Know which you booked.", meta: "7 min read · June 2026", tint: "#ff6540",
+    body: [ "The word breathwork now covers two almost opposite practices, and booking the wrong one is the single most common bad experience people have with it.", "The first kind is slow and downregulating: extended exhales, gentle retentions, nasal breathing, often taught inside a yoga class as pranayama. The aim is to lower arousal. You should leave calmer than you arrived, and nothing dramatic should happen.", "The second kind is fast and activating: conscious connected breathing, holotropic-derived work, sometimes an hour of continuous circular breathing to music. This deliberately shifts blood chemistry and can produce strong physical and emotional responses — tingling, cramping in the hands, tears, occasionally a great deal more.", "Neither is better. But a Tuesday-lunchtime slot described only as 'breathwork' could be either, and people book the second expecting the first.", "Ask two questions before booking: how long is the active breathing portion, and is a facilitator present for the whole session. Ten minutes with a teacher in the room is a different proposition from fifty minutes with a recording.", "If you have a cardiovascular condition, are pregnant, have a history of seizures, or are managing a psychiatric diagnosis, the fast kind needs a conversation with the facilitator first. Good facilitators ask before you do." ] },
+  { id: "first", category: "BEGINNERS", title: "What to expect in your first class, minute by minute", excerpt: "Nobody will look at you. Here is what happens anyway, so you can stop wondering.", meta: "6 min read · May 2026", tint: "#fbac49",
+    body: [ "Arrive ten minutes early. This is the only rule that matters, and it exists so you can find the mats, the toilets and a spot that is not directly in front of the teacher.", "You will be asked whether you have any injuries. Answer honestly and specifically. 'Bad back' is less useful than 'my lower back hurts when I bend forward'.", "The first few minutes are usually sitting or lying still. This is the hardest part for most beginners, and it does not stay hard.", "You will not know the Sanskrit names. You do not need to. Watch the person next to you for the first two weeks; every single person in the room did the same thing.", "Something will be uncomfortable. Sharp, hot or electric means stop. Dull, broad and breathable means stay. Learning that distinction is most of the skill.", "The class ends lying on your back for five to ten minutes. Do not leave early. It is not optional padding — it is the part that makes the rest work.", "Afterwards you may feel unusually emotional, unusually sleepy, or nothing at all. All three are normal. Drink water and come back on Thursday." ] },
+  { id: "retreat", category: "RETREATS", title: "How to choose a retreat you will actually enjoy", excerpt: "The three questions that separate a restorative week from an expensive week of feeling trapped.", meta: "8 min read · May 2026", tint: "#f0d9cf",
+    body: [ "Retreats fail for boringly predictable reasons, and all of them are visible in the schedule before you book.", "First question: how much unstructured time is there? A week with two classes a day and a free afternoon is a rest. A week with two classes, a workshop, a talk and a group dinner is a conference with better views.", "Second question: how many people? Under sixteen and you will know everyone by day three. Over thirty and you will be in a group that is managed rather than taught. Neither is wrong, but they are completely different weeks.", "Third question: is silence involved, and is it optional? Partial silence — mornings only, or meals only — is a very different commitment from ten days of the real thing. Retreats that are vague about this are usually vague in person too.", "Two smaller things that matter more than people expect: whether rooms are shared, and how far it is from the airport. A four-hour transfer at the end of a long-haul flight eats the first day and a half.", "And book your first retreat close to home. If it turns out not to suit you, a three-hour train back is a very different situation from a rebooked international flight." ] },
+  { id: "teacher", category: "COMMUNITY", title: "How to tell a good teacher from a popular one", excerpt: "Follower counts, playlists and photogenic postures measure something. It is not teaching.", meta: "6 min read · April 2026", tint: "#a2d1a2",
+    body: [ "A popular teacher fills a room. A good teacher notices the person at the back who has been holding their breath for six minutes. These overlap less often than you would hope.", "Watch what happens when somebody in the room cannot do the thing. If the teacher offers a genuine alternative — not 'or stay here', but a different shape with the same intention — that is a good sign.", "Listen for whether instructions are about shape or about sensation. 'Square your hips' is a shape. 'Find the point where the front of your left hip starts to speak' is a sensation. Good teachers use both and know which one a beginner can actually follow.", "Notice whether they teach the same class to everyone. A teacher who has been running the same sequence for three years with a different playlist is not teaching; they are hosting.", "Ask how long they have been practising, not how long they have been teaching. The gap between the two numbers is informative.", "And notice how you feel two hours later, not two minutes later. Anyone can produce a nice feeling at the end of savasana." ] },
+  { id: "props", category: "PRACTICE", title: "Buy two blocks before you buy anything else", excerpt: "A short and slightly grumpy guide to what equipment is worth owning.", meta: "4 min read · March 2026", tint: "#fbac49",
+    body: [ "Two foam blocks. That is the whole shopping list for the first year, and they will do more for your practice than any mat costing more than a modest dinner.", "Blocks bring the floor closer. Almost every complaint a beginner has — hamstrings, wrists, lower back in forward folds — is partly a complaint about the floor being further away than their body can currently reach.", "A strap is the second purchase, and a dressing-gown cord does the job perfectly until you are certain.", "Mats matter less than the internet suggests, with one exception: if you sweat, grip is the only specification that counts. Everything else is thickness preference.", "Do not buy a bolster until a teacher has told you to. They are expensive, bulky, and two folded blankets are genuinely as good for the first few years.", "Wear something you can be upside down in without adjusting. That is the entire clothing guide." ] }
+];
+
+const KINDS = ["Everything", "Teachers", "Studios", "Retreats", "Teacher training", "Breathwork", "Meditation"];
+const KIND_OF = { Teachers: "Teacher", Studios: "Studio", Retreats: "Retreat", "Teacher training": "Training", Breathwork: "Breathwork", Meditation: "Meditation" };
+
+class Component extends DCLogic {
+  state = {
+    view: "home", listingId: null, postId: null, query: "", city: "Anywhere", kind: "Everything",
+    styles: [], formats: [], levels: [], days: [], sort: "reviews", startPath: null, verifiedOnly: false,
+    extraSlots: {}, bookings: [], bookStep: "choose", bookSlotId: null,
+    form: { name: "", email: "", card: "", expiry: "", cvc: "" }, ref: "",
+    manageId: "millpond", draft: { day: "Monday", time: "", what: "", where: "", capacity: "16", price: "" }, manageMsg: ""
+  };
+
+  go(view, extra) { this.setState(Object.assign({ view: view }, extra || {})); window.scrollTo(0, 0); }
+
+  toggleIn(key, value) {
+    const cur = this.state[key];
+    const next = cur.indexOf(value) === -1 ? cur.concat([value]) : cur.filter(v => v !== value);
+    this.setState({ [key]: next });
+  }
+
+  chips(key, names) {
+    return names.map(name => {
+      const on = this.state[key].indexOf(name) !== -1;
+      return { name: name, bg: on ? "#1b391c" : "#ffffff", fg: on ? "#ffffff" : "#3d523d", bd: on ? "#1b391c" : "#e4ece4", toggle: () => this.toggleIn(key, name) };
+    });
+  }
+
+  allSlots(t) {
+    return slotsFor(t).concat(this.state.extraSlots[t.id] || []).map(s => {
+      const mine = this.state.bookings.filter(b => b.slotId === s.id).length;
+      const taken = s.booked + mine;
+      const left = Math.max(0, s.capacity - taken);
+      return Object.assign({}, s, {
+        taken: taken, left: left, full: left === 0,
+        priceLabel: s.free ? "Donation" : s.symbol + s.price,
+        capacityLabel: left === 0 ? "Full" : left + " of " + s.capacity + " left",
+        capacityColor: left === 0 ? "#8a9a8a" : left <= 3 ? "#ff6540" : "#157a3d",
+        book: () => this.setState({ view: "booking", bookSlotId: s.id, bookStep: "details" }, () => window.scrollTo(0, 0))
+      });
+    });
+  }
+
+  setForm(key, value) { this.setState({ form: Object.assign({}, this.state.form, { [key]: value }) }); }
+  setDraft(key, value) { this.setState({ draft: Object.assign({}, this.state.draft, { [key]: value }) }); }
+
+  addSlot() {
+    const d = this.state.draft, id = this.state.manageId;
+    if (!d.time.trim() || !d.what.trim()) { this.setState({ manageMsg: "Add a time and a class name before saving." }); return; }
+    const t = LISTINGS.find(x => x.id === id);
+    const money = MONEY[t.country] || MONEY["—"];
+    const slot = {
+      id: id + "-x" + Date.now(), day: d.day.toUpperCase(), time: d.time.trim(), what: d.what.trim(),
+      where: d.where.trim() || (t.city === "Online" ? "Online" : t.city), capacity: Math.max(1, parseInt(d.capacity, 10) || 16),
+      booked: 0, price: parseInt(d.price, 10) || money[1], symbol: money[0], free: false
+    };
+    const list = (this.state.extraSlots[id] || []).concat([slot]);
+    this.setState({
+      extraSlots: Object.assign({}, this.state.extraSlots, { [id]: list }),
+      draft: { day: "Monday", time: "", what: "", where: "", capacity: "16", price: "" },
+      manageMsg: "Added " + slot.what + " on " + slot.day + " — " + slot.capacity + " places."
+    });
+  }
+
+  removeSlot(id, slotId) {
+    const list = (this.state.extraSlots[id] || []).filter(s => s.id !== slotId);
+    this.setState({ extraSlots: Object.assign({}, this.state.extraSlots, { [id]: list }), manageMsg: "Class removed." });
+  }
+
+  setCapacity(id, slotId, value) {
+    const list = (this.state.extraSlots[id] || []).map(s => s.id === slotId ? Object.assign({}, s, { capacity: Math.max(1, parseInt(value, 10) || 1) }) : s);
+    this.setState({ extraSlots: Object.assign({}, this.state.extraSlots, { [id]: list }) });
+  }
+
+  pay() {
+    const f = this.state.form;
+    if (!f.name.trim() || !f.email.trim()) { this.setState({ manageMsg: "" }); return; }
+    this.setState({ bookStep: "pay" }, () => window.scrollTo(0, 0));
+  }
+
+  confirm() {
+    const ref = "YI-" + String(1000 + Math.floor(Math.random() * 8999));
+    this.setState({
+      bookings: this.state.bookings.concat([{ slotId: this.state.bookSlotId, ref: ref, name: this.state.form.name }]),
+      ref: ref, bookStep: "done"
+    }, () => window.scrollTo(0, 0));
+  }
+
+  decorate(t, i) {
+    const tint = TINTS[i % TINTS.length];
+    const isRetreat = t.kind === "Retreat";
+    const isStudio = t.kind === "Studio";
+    const isTraining = t.kind === "Training";
+    const verified = VERIFIED.indexOf(t.id) !== -1;
+    const formatLabel = t.format === "both" ? "In person & online" : t.format === "online" ? "Online" : "In person";
+    const onlineOnly = t.format === "online";
+    const location = t.city === "Online" ? "Online, worldwide" : t.city + ", " + t.country;
+    const placeLine = onlineOnly ? location : location + " · " + formatLabel;
+    const first = t.name.split(" ")[0].toUpperCase();
+    return Object.assign({}, t, {
+      initials: t.name.split(" ").map(w => w[0]).join("").slice(0, 3),
+      tint: tint[0], tintFg: tint[1],
+      location: location,
+      formatLabel: formatLabel,
+      placeLine: placeLine,
+      kindLabel: t.kind.toUpperCase(),
+      verified: verified,
+      verifiedDisplay: verified ? "inline-block" : "none",
+      metaLine: placeLine + " · " + (isRetreat ? "running since " + (2026 - t.years) : isStudio ? "open since " + (2026 - t.years) : isTraining ? "running since " + (2026 - t.years) : t.years + " years teaching"),
+      reviewLabel: t.reviewCount + " reviews",
+      reviewsTitle: isRetreat ? "What past guests say" : isStudio ? "What members say" : isTraining ? "What graduates say" : "What students say",
+      scheduleTitle: isRetreat ? "Upcoming dates" : isStudio ? "Timetable" : isTraining ? "Dates & structure" : "Weekly timetable",
+      philosophyLabel: isStudio ? "WHAT THIS STUDIO IS FOR" : isRetreat ? "WHAT THIS RETREAT IS FOR" : isTraining ? "WHAT THIS TRAINING IS FOR" : "TEACHING PHILOSOPHY",
+      bookable: !!BOOKABLE[t.kind],
+      ctaLabel: isRetreat ? "ENQUIRE ABOUT DATES" : isTraining ? "APPLY OR ASK A QUESTION" : "BOOK A CLASS",
+      scheduleSummary: t.schedule.map(s => s.day.toLowerCase()).join(", "),
+      open: () => this.go("profile", { listingId: t.id })
+    });
+  }
+
+  decoratePost(p) { return Object.assign({}, p, { open: () => this.go("article", { postId: p.id }) }); }
+
+  bookingVals(all) {
+    const s = this.state;
+    const listing = all.find(t => t.id === s.listingId) || all[0];
+    const slots = this.allSlots(listing);
+    const slot = slots.find(x => x.id === s.bookSlotId) || slots[0] || null;
+    const f = s.form;
+    const detailsOk = f.name.trim().length > 1 && f.email.indexOf("@") > 0;
+    const payOk = f.card.replace(/\s/g, "").length >= 12 && f.expiry.trim().length >= 4 && f.cvc.trim().length >= 3;
+    return {
+      bookListing: listing, bookSlots: slots, bookSlot: slot,
+      bookStepChoose: s.bookStep === "choose", bookStepDetails: s.bookStep === "details",
+      bookStepPay: s.bookStep === "pay", bookStepDone: s.bookStep === "done",
+      bookRef: s.ref,
+      bookTotal: slot ? (slot.free ? "Donation — pay what you can on the day" : slot.symbol + slot.price) : "",
+      form: f,
+      setName: e => this.setForm("name", e.target.value),
+      setEmail: e => this.setForm("email", e.target.value),
+      setCard: e => this.setForm("card", e.target.value),
+      setExpiry: e => this.setForm("expiry", e.target.value),
+      setCvc: e => this.setForm("cvc", e.target.value),
+      detailsOk: detailsOk,
+      detailsBtn: detailsOk ? { bg: "#ff6540", fg: "#ffffff", cursor: "pointer" } : { bg: "#e4ece4", fg: "#8a9a8a", cursor: "not-allowed" },
+      payBtn: payOk ? { bg: "#ff6540", fg: "#ffffff", cursor: "pointer" } : { bg: "#e4ece4", fg: "#8a9a8a", cursor: "not-allowed" },
+      toDetails: () => detailsOk ? this.setState({ bookStep: "pay" }) : null,
+      toPay: () => payOk ? this.confirm() : null,
+      backToChoose: () => this.setState({ bookStep: "choose" }),
+      backToDetails: () => this.setState({ bookStep: "details" }),
+      bookAgain: () => this.setState({ view: "profile", bookStep: "choose", bookSlotId: null, ref: "", form: { name: "", email: "", card: "", expiry: "", cvc: "" } }, () => window.scrollTo(0, 0))
+    };
+  }
+
+  manageVals() {
+    const s = this.state;
+    const own = LISTINGS.filter(t => BOOKABLE[t.kind]);
+    const t = LISTINGS.find(x => x.id === s.manageId) || own[0];
+    const dec = this.decorate(t, LISTINGS.indexOf(t));
+    const slots = this.allSlots(t).map(x => Object.assign({}, x, {
+      isExtra: x.id.indexOf("-x") !== -1,
+      remove: () => this.removeSlot(t.id, x.id),
+      setCap: e => this.setCapacity(t.id, x.id, e.target.value)
+    }));
+    return {
+      manageOptions: own.map(x => ({ id: x.id, label: x.name + " · " + x.kind })),
+      manageId: s.manageId,
+      setManageId: e => this.setState({ manageId: e.target.value, manageMsg: "" }),
+      manageListing: dec, manageSlots: slots,
+      manageTotalPlaces: slots.reduce((a, x) => a + x.capacity, 0),
+      manageTotalBooked: slots.reduce((a, x) => a + x.taken, 0),
+      manageMsg: s.manageMsg, manageMsgDisplay: s.manageMsg ? "block" : "none",
+      draft: s.draft,
+      dayOptions: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday", "Mon–Fri", "Daily"],
+      setDraftDay: e => this.setDraft("day", e.target.value),
+      setDraftTime: e => this.setDraft("time", e.target.value),
+      setDraftWhat: e => this.setDraft("what", e.target.value),
+      setDraftWhere: e => this.setDraft("where", e.target.value),
+      setDraftCapacity: e => this.setDraft("capacity", e.target.value),
+      setDraftPrice: e => this.setDraft("price", e.target.value),
+      addSlot: () => this.addSlot()
+    };
+  }
+
+  renderVals() {
+    const s = this.state;
+    const all = LISTINGS.map((t, i) => this.decorate(t, i));
+    const q = s.query.trim().toLowerCase();
+    const wantKind = KIND_OF[s.kind];
+
+    let results = all.filter(t => {
+      if (wantKind && t.kind !== wantKind) return false;
+      if (s.verifiedOnly && !t.verified) return false;
+      if (q && (t.name + " " + t.kind + " " + t.styles.join(" ") + " " + t.tagline + " " + t.city).toLowerCase().indexOf(q) === -1) return false;
+      if (s.city !== "Anywhere" && t.city !== s.city) return false;
+      if (s.styles.length && !s.styles.some(x => t.styles.indexOf(x) !== -1)) return false;
+      if (s.formats.length) {
+        const wantsOnline = s.formats.indexOf("Online") !== -1;
+        const wantsRoom = s.formats.indexOf("In person") !== -1;
+        const ok = (wantsOnline && (t.format === "online" || t.format === "both")) || (wantsRoom && (t.format === "in-person" || t.format === "both"));
+        if (!ok) return false;
+      }
+      if (s.levels.length && !s.levels.some(x => t.levels.indexOf(x) !== -1)) return false;
+      if (s.days.length) {
+        const hay = t.schedule.map(sc => sc.day.toUpperCase()).join(" ");
+        const weekday = ["MON", "TUE", "WED", "THU", "FRI"];
+        const hasRange = hay.indexOf("–") !== -1 || hay.indexOf("DAILY") !== -1;
+        const ok = s.days.some(d => {
+          const D = d.toUpperCase();
+          if (hay.indexOf(D) !== -1) return true;
+          return hasRange && weekday.indexOf(D) !== -1;
+        });
+        if (!ok) return false;
+      }
+      return true;
+    });
+
+    const sorters = {
+      reviews: (a, b) => b.reviewCount - a.reviewCount,
+      experience: (a, b) => b.years - a.years,
+      name: (a, b) => a.name.localeCompare(b.name)
+    };
+    results = results.slice().sort(sorters[s.sort]);
+
+    const listing = all.find(t => t.id === s.listingId) || all[0];
+    const post = POSTS.map(p => this.decoratePost(p)).find(p => p.id === s.postId) || this.decoratePost(POSTS[0]);
+    const cities = ["Anywhere"].concat(Array.from(new Set(LISTINGS.map(t => t.city))).sort());
+    const countOf = k => LISTINGS.filter(t => t.kind === k).length;
+
+    const setKindAndGo = name => () => this.setState({ kind: name, view: "directory" }, () => window.scrollTo(0, 0));
+
+    return {
+      isHome: s.view === "home", isDirectory: s.view === "directory", isProfile: s.view === "profile",
+      isBlog: s.view === "blog", isArticle: s.view === "article", isBooking: s.view === "booking",
+      isManage: s.view === "manage", isSutras: s.view === "sutras", isRishikesh: s.view === "rishikesh",
+      goHome: () => this.go("home"), goDirectory: () => this.go("directory"), goBlog: () => this.go("blog"),
+      goManage: () => this.go("manage"), goSutras: () => this.go("sutras"), goRishikesh: () => this.go("rishikesh"),
+      query: s.query, setQuery: e => this.setState({ query: e.target.value }),
+      city: s.city, setCity: e => this.setState({ city: e.target.value }), cityOptions: cities,
+      kind: s.kind, setKind: e => this.setState({ kind: e.target.value }), kindOptions: KINDS,
+      sort: s.sort, setSort: e => this.setState({ sort: e.target.value }),
+      kindTabs: KINDS.map(name => {
+        const on = s.kind === name;
+        return { name: name, bg: on ? "#1b391c" : "#ffffff", fg: on ? "#ffffff" : "#3d523d", bd: on ? "#1b391c" : "#e4ece4", go: setKindAndGo(name) };
+      }),
+      styleFilters: this.chips("styles", ["Ashtanga", "Vinyasa", "Hatha", "Iyengar", "Yin", "Restorative", "Kundalini", "Prenatal", "Pranayama", "Breathwork", "Meditation", "Zen", "MBSR", "Yoga nidra", "Mantra", "Silent retreat", "Teacher training", "Ayurveda"]),
+      verifiedOnly: s.verifiedOnly,
+      toggleVerified: () => this.setState({ verifiedOnly: !s.verifiedOnly }),
+      verifiedChip: s.verifiedOnly
+        ? { bg: "#157a3d", fg: "#ffffff", bd: "#157a3d" }
+        : { bg: "#ffffff", fg: "#3d523d", bd: "#e4ece4" },
+      startPaths: START_PATHS.map(p => {
+        const on = s.startPath === p.name;
+        return { name: p.name, bg: on ? "#1b391c" : "#ffffff", fg: on ? "#ffffff" : "#1b391c", bd: on ? "#1b391c" : "#d4e3d4", select: () => this.setState({ startPath: on ? null : p.name }) };
+      }),
+      startNote: (START_PATHS.find(p => p.name === s.startPath) || {}).note || "",
+      startResultsDisplay: s.startPath ? "block" : "none",
+      startResults: s.startPath ? (START_PATHS.find(p => p.name === s.startPath).ids.map(id => all.find(t => t.id === id)).filter(Boolean)) : [],
+      startPost: s.startPath ? this.decoratePost(POSTS.find(p => p.id === START_PATHS.find(x => x.name === s.startPath).post) || POSTS[0]) : this.decoratePost(POSTS[0]),
+      formatFilters: this.chips("formats", ["In person", "Online"]),
+      levelFilters: this.chips("levels", ["Beginner", "Intermediate", "Advanced"]),
+      dayFilters: this.chips("days", ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"]),
+      clearFilters: () => this.setState({ query: "", city: "Anywhere", styles: [], formats: [], levels: [], days: [], verifiedOnly: false }),
+      results: results, noResults: results.length === 0,
+      resultLabel: results.length === 1 ? "1 listing" : results.length + " listings",
+      featured: all.filter(t => t.featured).slice(0, 4),
+      listingCount: LISTINGS.length,
+      listing: listing, post: post,
+      listingSlots: this.allSlots(listing),
+      listingBookDisplay: listing.bookable ? "block" : "none",
+      listingCta: () => listing.bookable
+        ? this.setState({ view: "booking", bookStep: "choose", bookSlotId: null, listingId: listing.id }, () => window.scrollTo(0, 0))
+        : null,
+      ...this.bookingVals(all),
+      ...this.manageVals(),
+      categories: [
+        { title: "Teachers", blurb: "Individual teachers, their styles, philosophy and weekly timetable.", count: countOf("Teacher") + " LISTED", go: setKindAndGo("Teachers") },
+        { title: "Studios", blurb: "Rooms with a full timetable, several teachers and drop-in classes.", count: countOf("Studio") + " LISTED", go: setKindAndGo("Studios") },
+        { title: "Retreats", blurb: "Residential weeks and silent sits, with real dates and group sizes.", count: countOf("Retreat") + " LISTED", go: setKindAndGo("Retreats") },
+        { title: "Trainings", blurb: "Accredited 200 and 300-hour courses, residential, part-time and online.", count: countOf("Training") + " LISTED", go: setKindAndGo("Trainings") },
+        { title: "Breathwork", blurb: "Pranayama, kriya and conscious connected breathing facilitators.", count: countOf("Breathwork") + " LISTED", go: setKindAndGo("Breathwork") },
+        { title: "Meditation", blurb: "Zen, MBSR, yoga nidra and mantra — taught as its own discipline.", count: countOf("Meditation") + " LISTED", go: setKindAndGo("Meditation") }
+      ],
+      posts: POSTS.map(p => this.decoratePost(p)),
+      homePosts: POSTS.slice(0, 3).map(p => this.decoratePost(p)),
+      popularStyles: ["Vinyasa", "Ashtanga", "Yin", "Prenatal", "Breathwork", "Silent retreat"].map(name => ({
+        name: name, go: () => this.setState({ view: "directory", kind: "Everything", styles: [name] }, () => window.scrollTo(0, 0))
+      }))
+    };
+  }
+}
+</script>
+</body>
+</html>

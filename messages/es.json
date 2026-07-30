@@ -1,0 +1,28 @@
+{
+  "nav": {
+    "index": "El índice",
+    "blog": "Blog",
+    "sutras": "Los Sutras",
+    "rishikesh": "Rishikesh",
+    "forTeachers": "Para profesores"
+  },
+  "cta": {
+    "book": "Reservar",
+    "enquire": "Consultar",
+    "search": "Buscar",
+    "viewProfile": "Ver perfil",
+    "clearFilters": "Borrar filtros"
+  },
+  "listing": {
+    "advertisingOnlyNote": "Reservas directamente con este proveedor — sus datos de contacto están en esta página.",
+    "verified": "Credenciales verificadas",
+    "indicativePrice": "Rango de precios indicativo fijado por el proveedor, sujeto a cambios — confírmalo directamente."
+  },
+  "footer": {
+    "tagline": "The Yoga Universe es un índice independiente de profesores, estudios, retiros y respiración.",
+    "indexColumn": "Índice",
+    "moreColumn": "Más",
+    "privacy": "Privacidad",
+    "terms": "Términos"
+  }
+}
